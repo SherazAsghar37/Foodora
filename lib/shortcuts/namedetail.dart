@@ -23,8 +23,7 @@ class NameDetail extends StatelessWidget {
   var xAxisPadding;
 
   NameDetail(
-      {Key? key,
-      required this.text,
+      {required this.text,
       this.textsize,
       this.SizedBoxheight1,
       this.SizedBoxheight2,
@@ -36,8 +35,7 @@ class NameDetail extends StatelessWidget {
       this.smalltext,
       this.starsize,
       this.yAxisPadding,
-      this.xAxisPadding})
-      : super(key: key);
+      this.xAxisPadding});
 
   @override
   Widget build(BuildContext context) {

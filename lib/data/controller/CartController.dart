@@ -110,6 +110,7 @@ class CartController extends GetxController {
   void addToHistory() {
     _items = {};
     cartRepo.addCartHistory();
+    print(cartRepo.getCartHistoryList().toString());
     update();
   }
 

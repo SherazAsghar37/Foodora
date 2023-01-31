@@ -28,17 +28,35 @@ class CartRepo {
     return cartList;
   }
 
-  List<CartMethod> getCartHistoryList() {
-    if (sharedPreferences.containsKey(AppConstants.CArtHistoryKey)) {
-      CartHistory = [];
-      CartHistory =
-          sharedPreferences.getStringList(AppConstants.CArtHistoryKey)!;
-    }
-    List<CartMethod> historyList = [];
-    CartHistory.forEach((element) {
-      historyList.add(CartMethod.fromJson(jsonDecode(element)));
-    });
-    return historyList;
+  // List<CartMethod> getCartHistoryList() {
+  //   if (sharedPreferences.containsKey(AppConstants.CArtHistoryKey)) {
+  //     CartHistory = [];
+  //     CartHistory =
+  //         sharedPreferences.getStringList(AppConstants.CArtHistoryKey)!;
+  //   }
+  //   List<CartMethod> historyList = [];
+  //   CartHistory.forEach((element) {
+  //     historyList.add(CartMethod.fromJson(jsonDecode(element)));
+  //   });
+  //   return historyList;
+  // }
+
+  // void addCartHistory() {
+  //   if (sharedPreferences.containsKey(AppConstants.CArtHistoryKey)) {
+  //     CartHistory =
+  //         sharedPreferences.getStringList(AppConstants.CArtHistoryKey)!;
+  //   }
+  //   for (int i = 0; i < cart.length; i++) {
+  //     CartHistory.add(cart[i]);
+  //   }
+  //   removeCart();
+  //   sharedPreferences.setStringList(AppConstants.CArtHistoryKey, CartHistory);
+  //   print("cart has " + CartHistory.length.toString() + "items");
+  // }
+
+  void removeCart() {
+    cart = [];
+    sharedPreferences.remove(AppConstants.CartKey);
   }
 
   void addCartHistory() {
@@ -46,16 +64,20 @@ class CartRepo {
       CartHistory =
           sharedPreferences.getStringList(AppConstants.CArtHistoryKey)!;
     }
-    for (int i = 0; i < cart.length; i++) {
-      CartHistory.add(cart[i]);
-    }
+    cart.forEach((element) {
+      CartHistory.add(element);
+    });
     removeCart();
     sharedPreferences.setStringList(AppConstants.CArtHistoryKey, CartHistory);
-    print("cart has " + CartHistory.length.toString() + "items");
   }
 
-  void removeCart() {
-    cart = [];
-    sharedPreferences.remove(AppConstants.CartKey);
+  List<CartMethod> getCartHistoryList() {
+    List<CartMethod> historyList = [];
+    sharedPreferences
+        .getStringList(AppConstants.CArtHistoryKey)!
+        .forEach((element) {
+      historyList.add(CartMethod.fromJson(jsonDecode(element)));
+    });
+    return historyList;
   }
 }

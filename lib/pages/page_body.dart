@@ -149,7 +149,8 @@ class _PageBodyState extends State<PageBody> {
                                             EdgeInsets.all(Dimensions.height10),
                                         child: Container(
                                           margin: EdgeInsets.fromLTRB(
-                                              Dimensions.height100,
+                                              Dimensions.height100 -
+                                                  Dimensions.height10,
                                               Dimensions.height10,
                                               Dimensions.width20,
                                               Dimensions.height10),

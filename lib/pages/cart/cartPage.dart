@@ -276,6 +276,7 @@ class CartPage extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             controller.addToHistory();
+                            Get.toNamed(RouteHelper.initial);
                           },
                           child: BigFont(
                             text: "Check out",
