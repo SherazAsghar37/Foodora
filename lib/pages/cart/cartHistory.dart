@@ -12,6 +12,7 @@ class CartHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartController cartController = Get.find();
     List<CartMethod> getCartHistoryList =
         Get.find<CartController>().getCartHistoryList();
     Map<String, int> cartItemsPerOrder = {};
@@ -65,6 +66,9 @@ class CartHistory extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.width20,
+                  vertical: Dimensions.height30),
               margin: EdgeInsets.only(top: Dimensions.height100),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -89,6 +93,18 @@ class CartHistory extends StatelessWidget {
                     topLeft: Radius.circular(Dimensions.height20),
                     topRight: Radius.circular(Dimensions.height20)),
               ),
+              child: GetBuilder<CartController>(builder: (CartController) {
+                return ListView.builder(
+                    itemCount: cartController.PerItemList.length,
+                    itemBuilder: (context, hIndex) {
+                      return Column(
+                        children: [
+                          Text(cartController.CartPerOrderItem.keys
+                              .elementAt(hIndex))
+                        ],
+                      );
+                    });
+              }),
             ),
           )
         ],

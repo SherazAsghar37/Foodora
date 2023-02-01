@@ -117,4 +117,27 @@ class CartController extends GetxController {
   List<CartMethod> getCartHistoryList() {
     return cartRepo.getCartHistoryList();
   }
+
+  var CartPerOrderItem = Map<String, int>();
+
+  void perItemMap() {
+    CartPerOrderItem = Map<String, int>();
+    for (var element in getCartHistoryList()) {
+      print(element.time);
+    }
+    for (int i = 0; i < getCartHistoryList().length; i++) {
+      var key = getCartHistoryList()[i].time.toString();
+      if (CartPerOrderItem.containsKey(key)) {
+        CartPerOrderItem.update(key, (value) => ++value);
+      } else {
+        CartPerOrderItem.putIfAbsent(key, () => 1);
+      }
+    }
+    print(CartPerOrderItem.toString());
+  }
+
+  List<int> get PerItemList {
+    perItemMap();
+    return CartPerOrderItem.entries.map((e) => e.value).toList();
+  }
 }
