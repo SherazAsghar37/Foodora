@@ -138,10 +138,13 @@ class CartController extends GetxController {
 
   List<int> templist = [];
   void createTempList() {
-    templist = [];
+    templist.clear();
   }
 
   int CartHistorypictureIndex(int index, int postionIndex) {
+    if (postionIndex == 0) {
+      createTempList();
+    }
     int counter = 0;
     for (var i = 0; i < getCartHistoryList().length; i++) {
       if (CartPerOrderItem.keys.elementAt(index) ==
@@ -154,5 +157,27 @@ class CartController extends GetxController {
       }
     }
     return 0;
+  }
+
+  List<List<Map>> nestedCartMethods = [];
+  void PictureListGenerator() {
+    nestedCartMethods = [];
+    for (var i = 0; i < CartPerOrderItem.length; i++) {
+      List<Map> temp = [];
+      for (var j = 0; j < getCartHistoryList().length; j++) {
+        if (CartPerOrderItem.keys.elementAt(i) ==
+            getCartHistoryList()[j].time) {
+          if (!temp.contains(getCartHistoryList()[j].img)) {
+            Map tempMap = {
+              getCartHistoryList()[j].img: getCartHistoryList()[j]
+            };
+            temp.add(tempMap);
+          }
+        }
+      }
+      nestedCartMethods.add(temp);
+    }
+    // nestedCartMethods= nestedCartMethods.reversed;
+    print("nested cart method : " + nestedCartMethods.toString());
   }
 }

@@ -186,10 +186,17 @@ class _PageBodyState extends State<PageBody> {
                                             text: recommendedProduct
                                                 .recommendedProductList[index]
                                                 .name!,
+                                            price: recommendedProduct
+                                                .recommendedProductList[index]
+                                                .price
+                                                .toString(),
                                             textsize: Dimensions.height20,
                                             SizedBoxheight1: Dimensions.height5,
                                             starsize: Dimensions.height15,
                                             smalltext: Dimensions.font12,
+                                            starCount: recommendedProduct
+                                                .recommendedProductList[index]
+                                                .stars!,
                                             SizedBoxheight2:
                                                 Dimensions.height10,
                                             SizedBoxheight11:
@@ -295,9 +302,11 @@ class _PageBodyState extends State<PageBody> {
                         offset: Offset(-Dimensions.width5, 0))
                   ]),
               child: NameDetail(
+                price: popularProduct.price.toString(),
                 text: popularProduct.name,
                 textsize: Dimensions.height25,
                 SizedBoxheight1: Dimensions.height10,
+                starCount: popularProduct.stars!,
                 starsize: Dimensions.height20,
                 smalltext: Dimensions.height15,
                 SizedBoxheight2: Dimensions.height10,

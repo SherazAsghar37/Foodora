@@ -17,29 +17,31 @@ class CartHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartController cartController = Get.find();
-    cartController.createTempList();
+
     List<CartMethod> getCartHistoryList =
         Get.find<CartController>().getCartHistoryList();
-    Map<String, int> cartItemsPerOrder = {};
-    for (int i = 0; i < getCartHistoryList.length; i++) {
-      if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
-        cartItemsPerOrder.update(
-            getCartHistoryList[i].time!, (value) => ++value);
-      } else {
-        cartItemsPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
-      }
-    }
-    List<int> cartItemsPerOrderList() {
-      return cartItemsPerOrder.entries.map((e) => e.value).toList();
-    }
+    cartController.createTempList();
 
-    var counter = 0;
-    List<int> orderTimes = cartItemsPerOrderList();
-    for (int i = 0; i < cartItemsPerOrder.length; i++) {
-      for (int j = 0; j < orderTimes[i]; j++) {
-        print("my order is " + getCartHistoryList[counter++].toString());
-      }
-    }
+    // Map<String, int> cartItemsPerOrder = {};
+    // for (int i = 0; i < getCartHistoryList.length; i++) {
+    //   if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
+    //     cartItemsPerOrder.update(
+    //         getCartHistoryList[i].time!, (value) => ++value);
+    //   } else {
+    //     cartItemsPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
+    //   }
+    // }
+    // List<int> cartItemsPerOrderList() {
+    //   return cartItemsPerOrder.entries.map((e) => e.value).toList();
+    // }
+
+    // var counter = 0;
+    // List<int> orderTimes = cartItemsPerOrderList();
+    // for (int i = 0; i < cartItemsPerOrder.length; i++) {
+    //   for (int j = 0; j < orderTimes[i]; j++) {
+    //     print("my order is " + getCartHistoryList[counter++].toString());
+    //   }
+    // }
     return Scaffold(
       body: Stack(
         children: [
@@ -104,63 +106,114 @@ class CartHistory extends StatelessWidget {
                     itemBuilder: (context, hIndex) {
                       var itemcout = cartController.PerItemList.length;
                       var reversedindex = itemcout - 1 - hIndex;
+                      cartController.PictureListGenerator();
+
                       return SizedBox(
-                        height: Dimensions.height120,
+                        height: Dimensions.height120 + Dimensions.height20,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              cartController.CartPerOrderItem.keys
-                                  .elementAt(reversedindex)
-                                  .substring(0, 19),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: Dimensions.height17),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  cartController.CartPerOrderItem.keys
+                                      .elementAt(reversedindex)
+                                      .substring(0, 19),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: Dimensions.height17),
+                                ),
+                                Text(
+                                  "Total",
+                                  style:
+                                      TextStyle(fontSize: Dimensions.height15),
+                                )
+                              ],
                             ),
                             SizedBox(
                               height: Dimensions.height10,
                             ),
                             Expanded(
-                              child: PageView.builder(
-                                  controller:
-                                      PageController(viewportFraction: 1 / 3.5),
-                                  padEnds: false,
-                                  itemCount:
-                                      cartController.PerItemList[reversedindex],
-                                  itemBuilder: (((context, position) {
-                                    return Row(
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: PageView.builder(
+                                        controller: PageController(
+                                            viewportFraction: 1 / 3.5),
+                                        padEnds: false,
+                                        itemCount: cartController
+                                            .PerItemList[reversedindex],
+                                        itemBuilder: (((context, position) {
+                                          var nestedList = cartController
+                                              .nestedCartMethods.reversed;
+                                          return Container(
+                                            margin: EdgeInsets.only(
+                                                right: Dimensions.width5),
+                                            height: Dimensions.height70 +
+                                                Dimensions.height10,
+                                            width: Dimensions.width50 +
+                                                Dimensions.width30,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        Dimensions.height15),
+                                                color: Colors.red,
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        AppConstants
+                                                                .BASE_URL +
+                                                            AppConstants
+                                                                .UPLOAD_URI +
+                                                            nestedList
+                                                                .elementAt(hIndex)[
+                                                                    position]
+                                                                .keys
+                                                                .elementAt(0)),
+                                                    fit: BoxFit.cover)),
+                                          );
+                                        }))),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.all(Dimensions.height10),
+                                    child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          MainAxisAlignment.spaceAround,
                                       children: [
+                                        Text(
+                                          "${cartController.CartPerOrderItem[cartController.CartPerOrderItem.keys.elementAt(reversedindex).toString()]} Items",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500),
+                                        ),
                                         Container(
-                                          height: Dimensions.height70 +
-                                              Dimensions.height10,
-                                          width: Dimensions.width50 +
-                                              Dimensions.width30,
+                                          padding: EdgeInsets.all(
+                                              Dimensions.height5),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(
-                                                      Dimensions.height15),
-                                              color: Colors.red,
-                                              image: DecorationImage(
-                                                  image: NetworkImage(AppConstants
-                                                          .BASE_URL +
-                                                      AppConstants.UPLOAD_URI +
-                                                      getCartHistoryList[cartController
-                                                              .CartHistorypictureIndex(
-                                                                  reversedindex,
-                                                                  (reversedindex +
-                                                                      position))]
-                                                          .img!),
-                                                  fit: BoxFit.cover)),
-                                        ),
+                                                      Dimensions.height10),
+                                              border: Border.all(
+                                                  width: 1,
+                                                  color: AppColors.maincolor)),
+                                          child: Text(
+                                            "Add more",
+                                            style: TextStyle(
+                                                color: AppColors.maincolor,
+                                                fontSize: Dimensions.height15),
+                                          ),
+                                        )
                                       ],
-                                    );
-                                  }))),
-                            )
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: Dimensions.height10,
+                            ),
                           ],
                         ),
                       );

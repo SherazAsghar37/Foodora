@@ -21,9 +21,14 @@ class NameDetail extends StatelessWidget {
   var starsize;
   var yAxisPadding;
   var xAxisPadding;
-
+  final int starCount;
+  final String price;
+  final String location;
   NameDetail(
-      {required this.text,
+      {this.location = "3 kms",
+      this.price = '10',
+      this.starCount = 5,
+      required this.text,
       this.textsize,
       this.SizedBoxheight1,
       this.SizedBoxheight2,
@@ -59,7 +64,7 @@ class NameDetail extends StatelessWidget {
             children: [
               Wrap(
                 children: List.generate(
-                    5,
+                    starCount == null ? 5 : starCount,
                     (index) => Icon(
                           Icons.star,
                           color: AppColors.maincolor,
@@ -71,7 +76,7 @@ class NameDetail extends StatelessWidget {
                       ? Dimensions.height10
                       : SizedBoxheight11),
               ThinFont(
-                text: "5.0",
+                text: starCount.toString() == null ? "5" : starCount.toString(),
                 size: smalltext == 0 ? Dimensions.font12 : smalltext,
               ),
               SizedBox(
@@ -113,7 +118,7 @@ class NameDetail extends StatelessWidget {
                   color: AppColors.maincolor,
                   icon: Icons.location_pin,
                   iconsize: Iconsize == null ? Dimensions.height20 : Iconsize,
-                  text: "3 k.ms",
+                  text: location == null ? "3 kms" : location,
                   textsize:
                       icontextsize == 0 ? Dimensions.font15 : icontextsize),
               SizedBox(
@@ -123,7 +128,7 @@ class NameDetail extends StatelessWidget {
                 color: Colors.blueAccent,
                 icon: Icons.price_change,
                 iconsize: Iconsize == null ? Dimensions.height20 : Iconsize,
-                text: "10 ",
+                text: price == null ? '10' : price,
                 textsize: icontextsize == 0 ? Dimensions.font15 : icontextsize,
               ),
             ],
