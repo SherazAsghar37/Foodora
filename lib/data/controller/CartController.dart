@@ -110,7 +110,6 @@ class CartController extends GetxController {
   void addToHistory() {
     _items = {};
     cartRepo.addCartHistory();
-    print(cartRepo.getCartHistoryList().toString());
     update();
   }
 
@@ -122,9 +121,6 @@ class CartController extends GetxController {
 
   void perItemMap() {
     CartPerOrderItem = Map<String, int>();
-    for (var element in getCartHistoryList()) {
-      print(element.time);
-    }
     for (int i = 0; i < getCartHistoryList().length; i++) {
       var key = getCartHistoryList()[i].time.toString();
       if (CartPerOrderItem.containsKey(key)) {
@@ -133,11 +129,30 @@ class CartController extends GetxController {
         CartPerOrderItem.putIfAbsent(key, () => 1);
       }
     }
-    print(CartPerOrderItem.toString());
   }
 
   List<int> get PerItemList {
     perItemMap();
     return CartPerOrderItem.entries.map((e) => e.value).toList();
+  }
+
+  List<int> templist = [];
+  void createTempList() {
+    templist = [];
+  }
+
+  int CartHistorypictureIndex(int index, int postionIndex) {
+    int counter = 0;
+    for (var i = 0; i < getCartHistoryList().length; i++) {
+      if (CartPerOrderItem.keys.elementAt(index) ==
+          getCartHistoryList()[i].time) {
+        if (templist.contains(i)) {
+          continue;
+        }
+        templist.add(i);
+        return i;
+      }
+    }
+    return 0;
   }
 }

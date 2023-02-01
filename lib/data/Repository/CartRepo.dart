@@ -42,6 +42,7 @@ class CartRepo {
     CartHistory.forEach((element) {
       historyList.add(CartMethod.fromJson(jsonDecode(element)));
     });
+    historyList.sort(((a, b) => a.time!.compareTo(b.time!)));
     return historyList;
   }
 

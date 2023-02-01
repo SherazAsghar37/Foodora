@@ -4,8 +4,12 @@ import 'package:first/assets/appColors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:first/data/controller/CartController.dart';
 import 'package:first/methods/CartMethod.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+
+import '../../assets/appConstants.dart';
 
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
@@ -13,6 +17,7 @@ class CartHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartController cartController = Get.find();
+    cartController.createTempList();
     List<CartMethod> getCartHistoryList =
         Get.find<CartController>().getCartHistoryList();
     Map<String, int> cartItemsPerOrder = {};
@@ -67,8 +72,8 @@ class CartHistory extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
               padding: EdgeInsets.symmetric(
-                  horizontal: Dimensions.width20,
-                  vertical: Dimensions.height30),
+                horizontal: Dimensions.width20,
+              ),
               margin: EdgeInsets.only(top: Dimensions.height100),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -97,11 +102,67 @@ class CartHistory extends StatelessWidget {
                 return ListView.builder(
                     itemCount: cartController.PerItemList.length,
                     itemBuilder: (context, hIndex) {
-                      return Column(
-                        children: [
-                          Text(cartController.CartPerOrderItem.keys
-                              .elementAt(hIndex))
-                        ],
+                      var itemcout = cartController.PerItemList.length;
+                      var reversedindex = itemcout - 1 - hIndex;
+                      return SizedBox(
+                        height: Dimensions.height120,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              cartController.CartPerOrderItem.keys
+                                  .elementAt(reversedindex)
+                                  .substring(0, 19),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: Dimensions.height17),
+                            ),
+                            SizedBox(
+                              height: Dimensions.height10,
+                            ),
+                            Expanded(
+                              child: PageView.builder(
+                                  controller:
+                                      PageController(viewportFraction: 1 / 3.5),
+                                  padEnds: false,
+                                  itemCount:
+                                      cartController.PerItemList[reversedindex],
+                                  itemBuilder: (((context, position) {
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: Dimensions.height70 +
+                                              Dimensions.height10,
+                                          width: Dimensions.width50 +
+                                              Dimensions.width30,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      Dimensions.height15),
+                                              color: Colors.red,
+                                              image: DecorationImage(
+                                                  image: NetworkImage(AppConstants
+                                                          .BASE_URL +
+                                                      AppConstants.UPLOAD_URI +
+                                                      getCartHistoryList[cartController
+                                                              .CartHistorypictureIndex(
+                                                                  reversedindex,
+                                                                  (reversedindex +
+                                                                      position))]
+                                                          .img!),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                      ],
+                                    );
+                                  }))),
+                            )
+                          ],
+                        ),
                       );
                     });
               }),
