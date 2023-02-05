@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.5
+  intl: ^0.18.0
   dots_indicator: ^2.1.0
   http: ^0.13.4
   persistent_bottom_nav_bar: ^5.0.2

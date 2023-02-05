@@ -4,11 +4,9 @@ import 'package:first/assets/appColors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:first/data/controller/CartController.dart';
 import 'package:first/methods/CartMethod.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-
+import 'package:intl/intl.dart';
 import '../../assets/appConstants.dart';
 
 class CartHistory extends StatelessWidget {
@@ -20,7 +18,6 @@ class CartHistory extends StatelessWidget {
 
     List<CartMethod> getCartHistoryList =
         Get.find<CartController>().getCartHistoryList();
-    cartController.createTempList();
 
     // Map<String, int> cartItemsPerOrder = {};
     // for (int i = 0; i < getCartHistoryList.length; i++) {
@@ -118,14 +115,28 @@ class CartHistory extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
-                                  cartController.CartPerOrderItem.keys
-                                      .elementAt(reversedindex)
-                                      .substring(0, 19),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: Dimensions.height17),
-                                ),
+                                (() {
+                                  DateTime parsed =
+                                      DateFormat("yyyy-mm-dd hh:mm:ss").parse(
+                                          cartController.CartPerOrderItem.keys
+                                              .elementAt(reversedindex));
+                                  var inputdate =
+                                      DateTime.parse(parsed.toString());
+                                  var outputFormat =
+                                      DateFormat("dd/mm/yyyy hh:mm: a")
+                                          .format(inputdate);
+                                  // var outputData =
+                                  //     outputFormat.format(inputdate);
+                                  return Text(outputFormat);
+                                }()),
+                                // Text(
+                                //   cartController.CartPerOrderItem.keys
+                                //       .elementAt(reversedindex)
+                                //       .substring(0, 19),
+                                //   style: TextStyle(
+                                //       fontWeight: FontWeight.bold,
+                                //       fontSize: Dimensions.height17),
+                                // ),
                                 Text(
                                   "Total",
                                   style:

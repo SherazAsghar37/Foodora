@@ -136,29 +136,6 @@ class CartController extends GetxController {
     return CartPerOrderItem.entries.map((e) => e.value).toList();
   }
 
-  List<int> templist = [];
-  void createTempList() {
-    templist.clear();
-  }
-
-  int CartHistorypictureIndex(int index, int postionIndex) {
-    if (postionIndex == 0) {
-      createTempList();
-    }
-    int counter = 0;
-    for (var i = 0; i < getCartHistoryList().length; i++) {
-      if (CartPerOrderItem.keys.elementAt(index) ==
-          getCartHistoryList()[i].time) {
-        if (templist.contains(i)) {
-          continue;
-        }
-        templist.add(i);
-        return i;
-      }
-    }
-    return 0;
-  }
-
   List<List<Map>> nestedCartMethods = [];
   void PictureListGenerator() {
     nestedCartMethods = [];
