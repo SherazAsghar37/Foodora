@@ -12,7 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+  final String page;
+  CartPage({Key? key, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class CartPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
+                      onTap: () => Get.back(),
                       child: AppRoundIcons(
                           color: Colors.white,
                           icon: Icons.arrow_back,
@@ -78,19 +80,24 @@ class CartPage extends StatelessWidget {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            var popularIndex =
-                                                Get.find<PopularProductContr>()
-                                                    .PopularProductList
-                                                    .indexOf(_cartmodel[index]
-                                                        .product);
-                                            if (popularIndex >= 0) {
-                                              Get.toNamed(RouteHelper
-                                                  .getPopularFoodPage(
-                                                      index, "cartPage"));
+                                            if (page != 'CartHistory') {
+                                              var popularIndex = Get.find<
+                                                      PopularProductContr>()
+                                                  .PopularProductList
+                                                  .indexOf(_cartmodel[index]
+                                                      .product);
+                                              if (popularIndex >= 0) {
+                                                Get.toNamed(RouteHelper
+                                                    .getPopularFoodPage(
+                                                        index, "cartPage"));
+                                              } else {
+                                                Get.toNamed(RouteHelper
+                                                    .getRecommendedFoodPage(
+                                                        index, "cartPage"));
+                                              }
                                             } else {
-                                              Get.toNamed(RouteHelper
-                                                  .getRecommendedFoodPage(
-                                                      index, "cartPage"));
+                                              Get.snackbar("Product Error",
+                                                  "Sorry you can't visit from here");
                                             }
                                           },
                                           child: Container(
@@ -216,7 +223,20 @@ class CartPage extends StatelessWidget {
                                     ),
                                   );
                                 }))
-                            : Text("cart is empty");
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: Dimensions.height100,
+                                    width: Dimensions.width120,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'images/EmptyCart.png'))),
+                                  ),
+                                ],
+                              );
                       },
                     ),
                   ),

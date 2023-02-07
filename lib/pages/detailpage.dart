@@ -1,9 +1,7 @@
 import 'package:first/assets/AppRoundIcon.dart';
 import 'package:first/assets/appConstants.dart';
-import 'package:first/assets/smallFont.dart';
 import 'package:first/data/controller/CartController.dart';
 import 'package:first/data/controller/popularController.dart';
-import 'package:first/pages/cart/cartPage.dart';
 import 'package:first/route_helper/routeHelper.dart';
 import 'package:first/shortcuts/Expandabletext.dart';
 import 'package:first/assets/appColors.dart';

@@ -136,6 +136,10 @@ class CartController extends GetxController {
     return CartPerOrderItem.entries.map((e) => e.value).toList();
   }
 
+  List<String> get CartPerOrderTimeDate {
+    return CartPerOrderItem.entries.map((e) => e.key).toList();
+  }
+
   List<List<Map>> nestedCartMethods = [];
   void PictureListGenerator() {
     nestedCartMethods = [];
@@ -156,5 +160,22 @@ class CartController extends GetxController {
     }
     // nestedCartMethods= nestedCartMethods.reversed;
     print("nested cart method : " + nestedCartMethods.toString());
+  }
+
+  Map<int, CartMethod> ReCartItem = Map();
+  void ConstructReCartMap(String Date) {
+    ReCartItem.clear();
+    for (var i = 0; i < getCartHistoryList().length; i++) {
+      if (getCartHistoryList()[i].time == Date) {
+        ReCartItem.putIfAbsent(
+            getCartHistoryList()[i].id!, () => getCartHistoryList()[i]);
+      }
+    }
+  }
+
+  void SetItems() {
+    _items = {};
+    _items = ReCartItem;
+    update();
   }
 }

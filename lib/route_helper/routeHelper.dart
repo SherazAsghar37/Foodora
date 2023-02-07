@@ -15,7 +15,7 @@ class RouteHelper {
 
   static String getSplashPage() => '$splashPage';
   static String getInital() => '$initial';
-  static String getCartpage() => '$cartPage';
+  static String getCartpage(String page) => '$cartPage?page=$page';
   static String getPopularFoodPage(int PageId, String page) =>
       '$popularFoodPage?pageId=$PageId&page = $page';
   static String getRecommendedFoodPage(int RecPageId, String page) =>
@@ -54,7 +54,10 @@ class RouteHelper {
     GetPage(
         name: cartPage,
         page: () {
-          return CartPage();
+          String page = Get.parameters['page'].toString();
+          return CartPage(
+            page: page,
+          );
         },
         transition: Transition.fadeIn)
   ];

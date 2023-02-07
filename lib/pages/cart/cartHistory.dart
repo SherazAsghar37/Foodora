@@ -4,6 +4,7 @@ import 'package:first/assets/appColors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:first/data/controller/CartController.dart';
 import 'package:first/methods/CartMethod.dart';
+import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -125,18 +126,8 @@ class CartHistory extends StatelessWidget {
                                   var outputFormat =
                                       DateFormat("dd/mm/yyyy hh:mm: a")
                                           .format(inputdate);
-                                  // var outputData =
-                                  //     outputFormat.format(inputdate);
                                   return Text(outputFormat);
                                 }()),
-                                // Text(
-                                //   cartController.CartPerOrderItem.keys
-                                //       .elementAt(reversedindex)
-                                //       .substring(0, 19),
-                                //   style: TextStyle(
-                                //       fontWeight: FontWeight.bold,
-                                //       fontSize: Dimensions.height17),
-                                // ),
                                 Text(
                                   "Total",
                                   style:
@@ -199,21 +190,35 @@ class CartHistory extends StatelessWidget {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500),
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.all(
-                                              Dimensions.height5),
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      Dimensions.height10),
-                                              border: Border.all(
-                                                  width: 1,
-                                                  color: AppColors.maincolor)),
-                                          child: Text(
-                                            "Add more",
-                                            style: TextStyle(
-                                                color: AppColors.maincolor,
-                                                fontSize: Dimensions.height15),
+                                        GestureDetector(
+                                          onTap: () async {
+                                            cartController.ConstructReCartMap(
+                                                cartController
+                                                    .CartPerOrderItem.keys
+                                                    .elementAt(reversedindex));
+                                            print(cartController.ReCartItem);
+                                            cartController.SetItems();
+                                            Get.toNamed(RouteHelper.getCartpage(
+                                                "CartHistory"));
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(
+                                                Dimensions.height5),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        Dimensions.height10),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color:
+                                                        AppColors.maincolor)),
+                                            child: Text(
+                                              "Add more",
+                                              style: TextStyle(
+                                                  color: AppColors.maincolor,
+                                                  fontSize:
+                                                      Dimensions.height15),
+                                            ),
                                           ),
                                         )
                                       ],
