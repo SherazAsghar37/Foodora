@@ -11,6 +11,8 @@ import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../assets/EmptyCartImageContainer.dart';
+
 class CartPage extends StatelessWidget {
   final String page;
   CartPage({Key? key, required this.page}) : super(key: key);
@@ -223,19 +225,9 @@ class CartPage extends StatelessWidget {
                                     ),
                                   );
                                 }))
-                            : Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: Dimensions.height100,
-                                    width: Dimensions.width120,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'images/EmptyCart.png'))),
-                                  ),
-                                ],
+                            : EmptyCartImageContainer(
+                                imagePath: 'images/EmptyCart.png',
+                                message: "Cart is Currently Empty",
                               );
                       },
                     ),
