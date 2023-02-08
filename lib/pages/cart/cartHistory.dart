@@ -87,10 +87,8 @@ class CartHistory extends StatelessWidget {
                       topLeft: Radius.circular(Dimensions.height20),
                       topRight: Radius.circular(Dimensions.height20)),
                 ),
-                child: debugger != 0
-                    ?
-                    // cartController.getCartHistoryList().length > 0
-                    GetBuilder<CartController>(builder: (CartController) {
+                child: cartController.getCartHistoryList().length > 0
+                    ? GetBuilder<CartController>(builder: (CartController) {
                         return ListView.builder(
                             itemCount: cartController.PerItemList.length,
                             itemBuilder: (context, hIndex) {
