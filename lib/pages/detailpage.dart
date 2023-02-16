@@ -29,9 +29,11 @@ class Detailpage extends StatelessWidget {
             height: Dimensions.height350,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(AppConstants.BASE_URL +
-                        AppConstants.UPLOAD_URI +
-                        Popular.img!),
+                    image:
+                        //  NetworkImage(AppConstants.BASE_URL +
+                        //     AppConstants.UPLOAD_URI +
+                        //     Popular.img!),
+                        AssetImage('images/${Popular.img!}'),
                     fit: BoxFit.cover)),
           ),
           Padding(

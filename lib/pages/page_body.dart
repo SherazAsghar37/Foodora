@@ -140,7 +140,8 @@ class _PageBodyState extends State<PageBody> {
                                             //         .img!),
                                             // fit: BoxFit.cover
                                             AssetImage(
-                                                'images/${recommendedProduct.recommendedProductList[index].img!}')),
+                                                'images/${recommendedProduct.recommendedProductList[index].img!}'),
+                                        fit: BoxFit.cover),
                                   ),
                                 ),
                                 Align(
@@ -271,9 +272,11 @@ class _PageBodyState extends State<PageBody> {
                   borderRadius: BorderRadius.circular(Dimensions.height20),
                   color: index.isEven ? Color(0xFFDD2C00) : Color(0xFFDD2c200),
                   image: DecorationImage(
-                      image: NetworkImage(AppConstants.BASE_URL +
-                          AppConstants.UPLOAD_URI +
-                          popularProduct.img!),
+                      image:
+                          //  NetworkImage(AppConstants.BASE_URL +
+                          //     AppConstants.UPLOAD_URI +
+                          //     popularProduct.img!),
+                          AssetImage('images/${popularProduct.img!}'),
                       fit: BoxFit.cover),
                 ),
               );

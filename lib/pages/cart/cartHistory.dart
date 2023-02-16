@@ -152,16 +152,19 @@ class CartHistory extends StatelessWidget {
                                                                     .height15),
                                                         color: Colors.red,
                                                         image: DecorationImage(
-                                                            image: NetworkImage(AppConstants
-                                                                    .BASE_URL +
-                                                                AppConstants
-                                                                    .UPLOAD_URI +
-                                                                nestedList
-                                                                    .elementAt(hIndex)[
-                                                                        position]
-                                                                    .keys
-                                                                    .elementAt(
-                                                                        0)),
+                                                            image:
+                                                                // NetworkImage(AppConstants
+                                                                //         .BASE_URL +
+                                                                //     AppConstants
+                                                                //         .UPLOAD_URI +
+                                                                //     nestedList
+                                                                //         .elementAt(hIndex)[
+                                                                //             position]
+                                                                //         .keys
+                                                                //         .elementAt(
+                                                                //             0)),
+                                                                AssetImage(
+                                                                    'images/${nestedList.elementAt(hIndex)[position].keys.elementAt(0)}'),
                                                             fit: BoxFit.cover)),
                                                   );
                                                 }))),

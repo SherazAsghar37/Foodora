@@ -101,9 +101,11 @@ class RecepiePage extends StatelessWidget {
                 expandedHeight: Dimensions.height320,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image(
-                    image: NetworkImage(AppConstants.BASE_URL +
-                        AppConstants.UPLOAD_URI +
-                        Recommended.img!),
+                    image:
+                        //  NetworkImage(AppConstants.BASE_URL +
+                        //     AppConstants.UPLOAD_URI +
+                        //     Recommended.img!),
+                        AssetImage('images/${Recommended.img!}'),
                     width: double.maxFinite,
                     fit: BoxFit.cover,
                   ),

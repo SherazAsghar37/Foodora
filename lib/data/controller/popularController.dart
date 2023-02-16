@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:first/assets/appColors.dart';
 import 'package:first/data/Repository/Popular_Reposiotry.dart';
 import 'package:first/data/controller/CartController.dart';
@@ -5,6 +7,7 @@ import 'package:first/methods/CartMethod.dart';
 import 'package:first/methods/Product_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class PopularProductContr extends GetxController {
   final PopularProductRepo popularProductRepo;
@@ -22,17 +25,33 @@ class PopularProductContr extends GetxController {
   int _inCartItem = 0;
   int get inCartItem => _inCartItem + quantity;
 
-  Future<void> getPopularProductList() async {
-    Response response = await popularProductRepo.getPopularProductList();
+  // Future<void> getPopularProductList() async {
+  //   Response response = await popularProductRepo.getPopularProductList();
+  //   if (response.statusCode == 200) {
+  //     print("Date Recieved");
+  //     _popularProductList = [];
+  //     _popularProductList.addAll(Products.fromJson(response.body).products);
+  //     _isLoaded = true;
+  //     update();
+  //   } else {
+  //     print(response.statusCode);
+  //     print("data didnot recieved");
+  //   }
+  // }
+  Future<void> getPopularProductList1() async {
+    print('Calling');
+    final response =
+        await http.get(Uri.parse('http://10.0.2.2:8000/api/v1/food/'));
+    print(response.statusCode);
     if (response.statusCode == 200) {
-      print("Date Recieved");
+      print("Got the data");
       _popularProductList = [];
-      _popularProductList.addAll(Products.fromJson(response.body).products);
+      _popularProductList
+          .addAll(Products.fromJson(jsonDecode(response.body)[1]).products);
       _isLoaded = true;
       update();
     } else {
-      print(response.statusCode);
-      print("data didnot recieved");
+      print("unable to get the data");
     }
   }
 
