@@ -19,8 +19,10 @@ class _splashScreenState extends State<splashScreen>
   late AnimationController controller;
   late Animation<double> animation;
   _loadresources() {
-    Get.find<PopularProductContr>().getPopularProductList();
-    Get.find<RecommendedProductContr>().getRecommendedProductList();
+    // Get.find<PopularProductContr>().getPopularProductList();
+
+    // Get.find<RecommendedProductContr>().getRecommendedProductList();
+    Get.find<RecommendedProductContr>().getRecommendedProductList1();
     Get.find<CartController>;
   }
 

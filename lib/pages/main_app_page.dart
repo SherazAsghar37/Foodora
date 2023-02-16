@@ -1,8 +1,10 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:first/assets/dimensions.dart';
+import 'package:get/get.dart';
 import '../assets/appColors.dart';
 import '../assets/BigFont.dart';
 import 'package:flutter/material.dart';
+import '../data/controller/recommenden_controller.dart';
 import 'page_body.dart';
 
 class MainAppPage extends StatefulWidget {
@@ -61,18 +63,24 @@ class _MainAppPageState extends State<MainAppPage> {
                         )
                       ],
                     ),
-                    Container(
-                      height: Dimensions.height50,
-                      width: Dimensions.height50,
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                        size: Dimensions.height30,
+                    GestureDetector(
+                      onTap: () {
+                        Get.find<RecommendedProductContr>()
+                            .getRecommendedProductList1();
+                      },
+                      child: Container(
+                        height: Dimensions.height50,
+                        width: Dimensions.height50,
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: Dimensions.height30,
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.height15),
+                            color: AppColors.maincolor),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.height15),
-                          color: AppColors.maincolor),
                     ),
                   ],
                 )

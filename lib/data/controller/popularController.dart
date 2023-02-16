@@ -31,6 +31,7 @@ class PopularProductContr extends GetxController {
       _isLoaded = true;
       update();
     } else {
+      print(response.statusCode);
       print("data didnot recieved");
     }
   }

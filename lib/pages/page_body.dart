@@ -131,13 +131,16 @@ class _PageBodyState extends State<PageBody> {
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.height20),
                                     image: DecorationImage(
-                                        image: NetworkImage(AppConstants
-                                                .BASE_URL +
-                                            AppConstants.UPLOAD_URI +
-                                            recommendedProduct
-                                                .recommendedProductList[index]
-                                                .img!),
-                                        fit: BoxFit.cover),
+                                        image:
+                                            //  NetworkImage(AppConstants
+                                            //         .BASE_URL +
+                                            //     AppConstants.UPLOAD_URI +
+                                            //     recommendedProduct
+                                            //         .recommendedProductList[index]
+                                            //         .img!),
+                                            // fit: BoxFit.cover
+                                            AssetImage(
+                                                'images/${recommendedProduct.recommendedProductList[index].img!}')),
                                   ),
                                 ),
                                 Align(
