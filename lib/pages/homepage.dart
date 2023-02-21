@@ -1,6 +1,7 @@
 import 'package:first/assets/appColors.dart';
 import 'package:first/pages/cart/cartHistory.dart';
 import 'package:first/pages/main_app_page.dart';
+import 'package:first/pages/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -59,11 +60,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       CartHistory(),
-      Container(
-        child: Center(
-          child: Text("page 3"),
-        ),
-      ),
+      ProfilePage()
     ];
   }
 
@@ -77,19 +74,19 @@ class _HomePageState extends State<HomePage> {
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.archivebox),
-        title: ("archieve"),
+        title: ("Archieve"),
         activeColorPrimary: AppColors.maincolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.shopping_cart),
-        title: ("cart"),
+        title: ("Cart History"),
         activeColorPrimary: AppColors.maincolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.person),
-        title: ("person"),
+        title: ("Profile"),
         activeColorPrimary: AppColors.maincolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
