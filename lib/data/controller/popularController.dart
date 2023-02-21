@@ -42,7 +42,9 @@ class PopularProductContr extends GetxController {
     print('Calling');
     final response =
         await http.get(Uri.parse('http://10.0.2.2:8000/api/v1/food/'));
-    print(response.statusCode);
+    // final response =
+    //     await http.get(Uri.parse('http://192.168.1.103:8000/api/v1/food/'));
+    // print(response.statusCode);
     if (response.statusCode == 200) {
       print("Got the data");
       _popularProductList = [];

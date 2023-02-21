@@ -1,5 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:first/assets/dimensions.dart';
+import 'package:first/data/controller/popularController.dart';
 import 'package:get/get.dart';
 import '../assets/appColors.dart';
 import '../assets/BigFont.dart';
@@ -67,6 +68,8 @@ class _MainAppPageState extends State<MainAppPage> {
                       onTap: () {
                         Get.find<RecommendedProductContr>()
                             .getRecommendedProductList1();
+                        Get.find<PopularProductContr>()
+                            .getPopularProductList1();
                       },
                       child: Container(
                         height: Dimensions.height50,
