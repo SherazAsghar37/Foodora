@@ -28,7 +28,7 @@ class ProfilePage extends StatelessWidget {
             child: CircleAvatar(
                 backgroundColor: AppColors.maincolor,
                 backgroundImage: const AssetImage(
-                  'images/luffy.png',
+                  'images/luffy.jpg',
                 ),
                 radius: Dimensions.height70 + Dimensions.height10,
                 child: Align(
@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
             height: Dimensions.height10,
           ),
           BigFont(
-            text: "Luffy",
+            text: "Naruto",
             color: Colors.black,
             size: Dimensions.font25,
           ),
@@ -58,7 +58,7 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   ProfileContainer(
-                    Text: "Luffy",
+                    Text: "Naruto Uzumaki",
                     icon: Icons.person,
                   ),
                   ProfileContainer(
@@ -66,11 +66,11 @@ class ProfilePage extends StatelessWidget {
                     icon: Icons.phone,
                   ),
                   ProfileContainer(
-                    Text: "Luffy@gmail.com",
+                    Text: "sasuke@gmail.com",
                     icon: Icons.mail,
                   ),
                   ProfileContainer(
-                    Text: "Korangi, Karachi",
+                    Text: "Konoha, Karachi",
                     icon: Icons.location_on_outlined,
                   ),
                   ProfileContainer(

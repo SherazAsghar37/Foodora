@@ -8,6 +8,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import './cart/cartHistory.dart';
+import 'Auth/SignupPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -52,16 +53,7 @@ class _HomePageState extends State<HomePage> {
 
 //internet:
   List<Widget> _buildScreens() {
-    return [
-      MainAppPage(),
-      Container(
-        child: Center(
-          child: Text("page 1"),
-        ),
-      ),
-      CartHistory(),
-      ProfilePage()
-    ];
+    return [MainAppPage(), SignupPage(), CartHistory(), ProfilePage()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {

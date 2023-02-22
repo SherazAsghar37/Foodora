@@ -2,6 +2,8 @@ import 'package:first/assets/appConstants.dart';
 import 'package:first/data/controller/CartController.dart';
 import 'package:first/data/controller/popularController.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
+import 'package:first/pages/Auth/SignupPage.dart';
+import 'package:first/pages/Auth/loginPage.dart';
 import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,11 +25,12 @@ class MyApp extends StatelessWidget {
       return GetBuilder<RecommendedProductContr>(builder: (_) {
         return GetBuilder<CartController>(builder: (_) {
           return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: AppConstants.APP_NAME,
-              // home: splashScreen(),
-              initialRoute: RouteHelper.getSplashPage(),
-              getPages: RouteHelper.routes);
+            debugShowCheckedModeBanner: false,
+            title: AppConstants.APP_NAME,
+            home: LoginPage(),
+            // initialRoute: RouteHelper.getSplashPage(),
+            // getPages: RouteHelper.routes
+          );
         });
       });
     });
