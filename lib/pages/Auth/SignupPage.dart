@@ -1,5 +1,6 @@
 import 'package:first/assets/BigFont.dart';
 import 'package:first/assets/appColors.dart';
+import 'package:first/pages/Auth/ValidationHelper.dart';
 import 'package:first/pages/Auth/loginPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController NameController = TextEditingController();
   TextEditingController PhoneController = TextEditingController();
   List iconsImages = ['fb.png', "google.png", 'twitter.png'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,18 +76,27 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: Dimensions.height20,
             ),
-            Container(
-              height: Dimensions.Screenheight / 13,
-              width: Dimensions.Screenwidth / 2,
-              padding: EdgeInsets.all(Dimensions.height10),
-              decoration: BoxDecoration(
-                  color: AppColors.maincolor,
-                  borderRadius: BorderRadius.circular(Dimensions.height30)),
-              child: Center(
-                child: BigFont(
-                  text: "Sign up",
-                  color: Colors.white,
-                  size: Dimensions.height30,
+            GestureDetector(
+              onTap: () {
+                VAlidationHelper.validationHelper(
+                    EmailController.text.trim(),
+                    PasswordController.text.trim(),
+                    NameController.text.trim(),
+                    PhoneController.text.trim());
+              },
+              child: Container(
+                height: Dimensions.Screenheight / 13,
+                width: Dimensions.Screenwidth / 2,
+                padding: EdgeInsets.all(Dimensions.height10),
+                decoration: BoxDecoration(
+                    color: AppColors.maincolor,
+                    borderRadius: BorderRadius.circular(Dimensions.height30)),
+                child: Center(
+                  child: BigFont(
+                    text: "Sign up",
+                    color: Colors.white,
+                    size: Dimensions.height30,
+                  ),
                 ),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import '../../assets/appConstants.dart';
+
 class ApiClient extends GetConnect implements GetxService {
   late String token;
   final String appBaseUrl;
@@ -9,18 +10,17 @@ class ApiClient extends GetConnect implements GetxService {
     baseUrl = appBaseUrl;
     token = AppConstants.TOKEN;
     _mainheader = {
-      'Connect-type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer $token'
+      'Accept': 'application/json',
+      'Authorization': 'token $token'
     };
   }
   Future<Response> getData(String uri) async {
-
     try {
-      Response response = await get(uri);
+      print(uri);
+      Response response = await get(uri, headers: _mainheader);
       return response;
-    } catch (e){
+    } catch (e) {
       return await Response(statusCode: 1, statusText: e.toString());
-      
     }
   }
 }

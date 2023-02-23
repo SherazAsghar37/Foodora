@@ -64,26 +64,18 @@ class _MainAppPageState extends State<MainAppPage> {
                         )
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.find<RecommendedProductContr>()
-                            .getRecommendedProductList1();
-                        Get.find<PopularProductContr>()
-                            .getPopularProductList1();
-                      },
-                      child: Container(
-                        height: Dimensions.height50,
-                        width: Dimensions.height50,
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.white,
-                          size: Dimensions.height30,
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.height15),
-                            color: AppColors.maincolor),
+                    Container(
+                      height: Dimensions.height50,
+                      width: Dimensions.height50,
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: Dimensions.height30,
                       ),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.height15),
+                          color: AppColors.maincolor),
                     ),
                   ],
                 )

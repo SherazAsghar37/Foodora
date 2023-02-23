@@ -25,37 +25,37 @@ class PopularProductContr extends GetxController {
   int _inCartItem = 0;
   int get inCartItem => _inCartItem + quantity;
 
-  // Future<void> getPopularProductList() async {
-  //   Response response = await popularProductRepo.getPopularProductList();
-  //   if (response.statusCode == 200) {
-  //     print("Date Recieved");
-  //     _popularProductList = [];
-  //     _popularProductList.addAll(Products.fromJson(response.body).products);
-  //     _isLoaded = true;
-  //     update();
-  //   } else {
-  //     print(response.statusCode);
-  //     print("data didnot recieved");
-  //   }
-  // }
-  Future<void> getPopularProductList1() async {
-    print('Calling');
-    final response =
-        await http.get(Uri.parse('http://10.0.2.2:8000/api/v1/food/'));
-    // final response =
-    //     await http.get(Uri.parse('http://192.168.1.103:8000/api/v1/food/'));
-    // print(response.statusCode);
+  Future<void> getPopularProductList() async {
+    Response response = await popularProductRepo.getPopularProductList();
     if (response.statusCode == 200) {
-      print("Got the data");
+      print("Date Recieved");
       _popularProductList = [];
-      _popularProductList
-          .addAll(Products.fromJson(jsonDecode(response.body)[1]).products);
+      _popularProductList.addAll(Products.fromJson(response.body[1]).products);
       _isLoaded = true;
       update();
     } else {
-      print("unable to get the data");
+      print(response.statusCode);
+      print("data didnot recieved");
     }
   }
+  // Future<void> getPopularProductList1() async {
+  //   print('Calling');
+  //   final response =
+  //       await http.get(Uri.parse('http://10.0.2.2:8000/api/v1/food/'));
+  //   // final response =
+  //   //     await http.get(Uri.parse('http://192.168.1.103:8000/api/v1/food/'));
+  //   // print(response.statusCode);
+  //   if (response.statusCode == 200) {
+  //     print("Got the data");
+  //     _popularProductList = [];
+  //     _popularProductList
+  //         .addAll(Products.fromJson(jsonDecode(response.body)[1]).products);
+  //     _isLoaded = true;
+  //     update();
+  //   } else {
+  //     print("unable to get the data");
+  //   }
+  // }
 
   void GetQuantity(bool didinitialize) {
     if (didinitialize == true) {

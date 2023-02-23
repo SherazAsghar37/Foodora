@@ -25,12 +25,11 @@ class MyApp extends StatelessWidget {
       return GetBuilder<RecommendedProductContr>(builder: (_) {
         return GetBuilder<CartController>(builder: (_) {
           return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: AppConstants.APP_NAME,
-            home: LoginPage(),
-            // initialRoute: RouteHelper.getSplashPage(),
-            // getPages: RouteHelper.routes
-          );
+              debugShowCheckedModeBanner: false,
+              title: AppConstants.APP_NAME,
+              // home: LoginPage(),
+              initialRoute: RouteHelper.getSplashPage(),
+              getPages: RouteHelper.routes);
         });
       });
     });
