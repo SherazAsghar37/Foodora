@@ -1,12 +1,13 @@
 import 'package:first/assets/BigFont.dart';
 import 'package:first/assets/appColors.dart';
-import 'package:first/pages/Auth/Signup_body_moel.dart';
-import 'package:first/pages/Auth/ValidationHelper.dart';
+import 'package:first/methods/Signup_body_moel.dart';
+import 'package:first/assets/ValidationHelper.dart';
 import 'package:first/pages/Auth/loginPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../assets/dimensions.dart';
+import '../../data/controller/authController.dart';
 import '../../shortcuts/AppTextField.dart';
 
 class SignupPage extends StatefulWidget {
@@ -17,18 +18,26 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  AuthController authController = Get.find();
   TextEditingController EmailController = TextEditingController();
   TextEditingController PasswordController = TextEditingController();
   TextEditingController NameController = TextEditingController();
   TextEditingController PhoneController = TextEditingController();
   List iconsImages = ['fb.png', "google.png", 'twitter.png'];
-
+  late String email;
+  late String name;
+  late String phone;
+  late String password;
   @override
   Widget build(BuildContext context) {
-    String email = EmailController.text.trim();
-    String password = PasswordController.text.trim();
-    String name = NameController.text.trim();
-    String phone = PhoneController.text.trim();
+    setFields() {
+      email = EmailController.text.trim();
+      password = PasswordController.text.trim();
+      name = NameController.text.trim();
+      phone = PhoneController.text.trim();
+      return true;
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -82,9 +91,18 @@ class _SignupPageState extends State<SignupPage> {
               height: Dimensions.height20,
             ),
             GestureDetector(
-              onTap: () {
+              onTap: () async {
+                await setFields();
                 VAlidationHelper.validationHelper(email, password, name, phone);
-                SignupBody(email, name, password, phone);
+                var signupBody = await SignupBody(
+                    email: email, name: name, password: password, phone: phone);
+                authController.Registeration(signupBody).then((status) {
+                  if (status.isSucess) {
+                    print("Sucessful Registration");
+                  } else {
+                    VAlidationHelper.getAppSnackbar(status.message);
+                  }
+                });
               },
               child: Container(
                 height: Dimensions.Screenheight / 13,

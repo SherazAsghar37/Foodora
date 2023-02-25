@@ -3,7 +3,11 @@ class SignupBody {
   final String phone;
   final String email;
   final String password;
-  SignupBody(this.email, this.name, this.password, this.phone);
+  SignupBody(
+      {required this.email,
+      required this.name,
+      required this.password,
+      required this.phone});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = new Map<String, dynamic>();
     data['email'] = this.email;

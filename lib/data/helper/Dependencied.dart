@@ -4,12 +4,12 @@ import 'package:first/data/Repository/recommended_Repo.dart';
 import 'package:first/data/api/api_client.dart';
 import 'package:first/data/controller/popularController.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
-import 'package:first/pages/Auth/authController.dart';
+import 'package:first/data/controller/authController.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../assets/appConstants.dart';
-import '../../pages/Auth/authRepo.dart';
+import '../Repository/authRepo.dart';
 import '../controller/CartController.dart';
 
 Future<void> init() async {
