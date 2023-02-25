@@ -1,5 +1,6 @@
 import 'package:first/assets/BigFont.dart';
 import 'package:first/assets/appColors.dart';
+import 'package:first/pages/Auth/Signup_body_moel.dart';
 import 'package:first/pages/Auth/ValidationHelper.dart';
 import 'package:first/pages/Auth/loginPage.dart';
 import 'package:flutter/gestures.dart';
@@ -24,6 +25,10 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    String email = EmailController.text.trim();
+    String password = PasswordController.text.trim();
+    String name = NameController.text.trim();
+    String phone = PhoneController.text.trim();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -78,11 +83,8 @@ class _SignupPageState extends State<SignupPage> {
             ),
             GestureDetector(
               onTap: () {
-                VAlidationHelper.validationHelper(
-                    EmailController.text.trim(),
-                    PasswordController.text.trim(),
-                    NameController.text.trim(),
-                    PhoneController.text.trim());
+                VAlidationHelper.validationHelper(email, password, name, phone);
+                SignupBody(email, name, password, phone);
               },
               child: Container(
                 height: Dimensions.Screenheight / 13,

@@ -6,10 +6,8 @@ class AppConstants {
   static const String POPULAR_URI = 'api/v1/food/';
   // static const String POPULAR_URI = 'api/v1/products/popular';
   // static const String RECOMENDED_URI = 'api/v1/products/recommended';
-  // static const String BASE_URL = 'http://127.0.0.1:8000/';
-  // static const String POPULAR_URI = 'api/v1/food/';
   static const String RECOMENDED_URI = 'api/v1/food/';
-  // static const String TOKEN = 'ninja';
+  static const String Register_URI = 'api/v1/auth/register/';
   static const String TOKEN = '482b16c8eada8111d92a1caa2b21bf237defbb0d';
   static const String APP_NAME = 'Khaabay';
   static const double APP_VERSION = 0;
