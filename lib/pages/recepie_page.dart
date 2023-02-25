@@ -1,30 +1,29 @@
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appConstants.dart';
-import 'package:first/data/controller/CartController.dart';
-import 'package:first/data/controller/popularController.dart';
+// ignore_for_file: prefer_const_constructors_in_immutables
+
+import 'package:first/assets/Big_font.dart';
+import 'package:first/data/controller/cart_controller.dart';
+import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
 import 'package:first/route_helper/routeHelper.dart';
-import 'package:first/shortcuts/Expandabletext.dart';
-import 'package:first/assets/appColors.dart';
+import 'package:first/shortcuts/expandable_text.dart';
+import 'package:first/assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';
-import 'package:first/assets/AppRoundIcon.dart';
+import 'package:first/assets/app_round_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'cart/cartPage.dart';
-
 class RecepiePage extends StatelessWidget {
-  final int RecPageId;
+  final int recPageId;
   final String page;
-  RecepiePage({Key? key, required this.RecPageId, required this.page})
+  RecepiePage({Key? key, required this.recPageId, required this.page})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var Recommended =
-        Get.find<RecommendedProductContr>().recommendedProductList[RecPageId];
-    var checker = Get.find<PopularProductContr>()
-        .inital(Recommended, Get.find<CartController>());
+    var recommended =
+        Get.find<RecommendedProductContr>().recommendedProductList[recPageId];
+    Get.find<PopularProductContr>()
+        .inital(recommended, Get.find<CartController>());
     return Scaffold(
         body: CustomScrollView(
           slivers: [
@@ -44,11 +43,10 @@ class RecepiePage extends StatelessWidget {
                         }
                       },
                       child: AppRoundIcons(
-                        color: Colors.black,
+                        color: AppColors.appBlack,
                         icon: Icons.arrow_back_ios,
                         length: Dimensions.height45,
-                        backColor:
-                            Color.fromARGB(255, 255, 255, 255).withOpacity(0.6),
+                        backColor: AppColors.constant255.withOpacity(0.6),
                       ),
                     ),
                     GetBuilder<PopularProductContr>(builder: (popularProduct) {
@@ -59,11 +57,11 @@ class RecepiePage extends StatelessWidget {
                               Get.toNamed(RouteHelper.cartPage);
                             },
                             child: AppRoundIcons(
-                                color: Colors.black,
+                                color: AppColors.appBlack,
                                 icon: Icons.shopping_bag,
                                 length: Dimensions.height45,
-                                backColor: Color.fromARGB(255, 255, 255, 255)
-                                    .withOpacity(0.6)),
+                                backColor:
+                                    AppColors.constant255.withOpacity(0.6)),
                           ),
                           Positioned(
                             left: 0,
@@ -87,7 +85,7 @@ class RecepiePage extends StatelessWidget {
                                         text: Get.find<PopularProductContr>()
                                             .totalItems
                                             .toString(),
-                                        color: Colors.white,
+                                        color: AppColors.appWhite,
                                         size: Dimensions.height15,
                                       )
                                     : Container(),
@@ -97,7 +95,7 @@ class RecepiePage extends StatelessWidget {
                     })
                   ],
                 ),
-                backgroundColor: Colors.black,
+                backgroundColor: AppColors.appBlack,
                 expandedHeight: Dimensions.height320,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image(
@@ -105,12 +103,13 @@ class RecepiePage extends StatelessWidget {
                         //  NetworkImage(AppConstants.BASE_URL +
                         //     AppConstants.UPLOAD_URI +
                         //     Recommended.img!),
-                        AssetImage('images/${Recommended.img!}'),
+                        AssetImage('images/${recommended.img!}'),
                     width: double.maxFinite,
                     fit: BoxFit.cover,
                   ),
                 ),
                 bottom: PreferredSize(
+                    // ignore: sort_child_properties_last
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -121,7 +120,7 @@ class RecepiePage extends StatelessWidget {
                               Dimensions.width25,
                               Dimensions.height5),
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AppColors.appWhite,
                               borderRadius: BorderRadius.only(
                                   topRight:
                                       Radius.circular(Dimensions.height45))),
@@ -129,7 +128,7 @@ class RecepiePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               BigFont(
-                                  text: Recommended.name!,
+                                  text: recommended.name!,
                                   size: Dimensions.height25),
                             ],
                           ),
@@ -140,7 +139,7 @@ class RecepiePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  ExpandableText(text: Recommended.description!),
+                  ExpandableText(text: recommended.description!),
                 ],
               ),
             )
@@ -159,7 +158,7 @@ class RecepiePage extends StatelessWidget {
                     left: Dimensions.width20),
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.appWhite,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Dimensions.height20),
                     topRight: Radius.circular(Dimensions.height20),
@@ -170,10 +169,10 @@ class RecepiePage extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        controller.GetQuantity(false);
+                        controller.getQuantity(false);
                       },
                       child: AppRoundIcons(
-                        color: Colors.white,
+                        color: AppColors.appWhite,
                         icon: Icons.remove,
                         length: Dimensions.height30,
                         iconsize: Dimensions.height22,
@@ -183,20 +182,20 @@ class RecepiePage extends StatelessWidget {
                     Center(
                         child: controller.inCartItem <= 0
                             ? BigFont(
-                                text: "Price \$ ${Recommended.price!}",
+                                text: "Price \$ ${recommended.price!}",
                                 color: Colors.black,
                                 size: Dimensions.height25)
                             : BigFont(
                                 text:
-                                    "\$ ${Recommended.price! * controller.inCartItem} x ${controller.inCartItem.toString()}",
+                                    "\$ ${recommended.price! * controller.inCartItem} x ${controller.inCartItem.toString()}",
                                 color: Colors.black,
                                 size: Dimensions.height25)),
                     GestureDetector(
                       onTap: () {
-                        controller.GetQuantity(true);
+                        controller.getQuantity(true);
                       },
                       child: AppRoundIcons(
-                        color: Colors.white,
+                        color: AppColors.appWhite,
                         icon: Icons.add,
                         length: Dimensions.height30,
                         iconsize: Dimensions.height22,
@@ -224,7 +223,7 @@ class RecepiePage extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(Dimensions.height20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.appWhite,
                         borderRadius:
                             BorderRadius.circular(Dimensions.height20),
                       ),
@@ -233,7 +232,7 @@ class RecepiePage extends StatelessWidget {
                         children: [
                           Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: AppColors.appWhite,
                                   borderRadius: BorderRadius.circular(
                                       Dimensions.height20)),
                               child: Icon(
@@ -246,7 +245,7 @@ class RecepiePage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        controller.addItem(Recommended);
+                        controller.addItem(recommended);
                       },
                       child: Container(
                         padding: EdgeInsets.all(Dimensions.height20),
@@ -260,8 +259,8 @@ class RecepiePage extends StatelessWidget {
                           children: [
                             BigFont(
                               text:
-                                  "\$ ${Recommended.price! * controller.inCartItem} Add To Cart",
-                              color: Colors.white,
+                                  "\$ ${recommended.price! * controller.inCartItem} Add To Cart",
+                              color: AppColors.appWhite,
                               size: Dimensions.height20,
                             ),
                           ],

@@ -1,15 +1,14 @@
 import 'package:first/assets/dimensions.dart';
 import 'package:first/assets/smallFont.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
+// ignore: must_be_immutable
 class AppIcons extends StatelessWidget {
   IconData icon;
   Color color;
   String text;
-  var iconsize;
-  var textsize;
+  double iconsize;
+  double textsize;
   Color? backgroundColor;
 
   AppIcons(
@@ -17,8 +16,8 @@ class AppIcons extends StatelessWidget {
       required this.color,
       required this.icon,
       required this.text,
-      this.iconsize,
-      this.textsize,
+      this.iconsize = 24,
+      this.textsize = 24,
       this.backgroundColor})
       : super(key: key);
 

@@ -1,26 +1,26 @@
-import 'package:first/assets/AppRoundIcon.dart';
-import 'package:first/assets/appConstants.dart';
-import 'package:first/data/controller/CartController.dart';
-import 'package:first/data/controller/popularController.dart';
-import 'package:first/route_helper/routeHelper.dart';
-import 'package:first/shortcuts/Expandabletext.dart';
-import 'package:first/assets/appColors.dart';
+import 'package:first/assets/app_round_icon.dart';
+import 'package:first/data/controller/popular_controller.dart';
+import 'package:first/shortcuts/expandable_text.dart';
+import 'package:first/assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:first/shortcuts/namedetail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../assets/BigFont.dart';
+import '../assets/Big_font.dart';
+import '../data/controller/cart_controller.dart';
+import '../route_helper/routeHelper.dart';
 
 class Detailpage extends StatelessWidget {
-  final int PageId;
+  final int pageId;
   final String page;
-  Detailpage({Key? key, required this.PageId, required this.page})
+  const Detailpage({Key? key, required this.pageId, required this.page})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var Popular = Get.find<PopularProductContr>().PopularProductList[PageId];
-    var checker = Get.find<PopularProductContr>()
-        .inital(Popular, Get.find<CartController>());
+    var popularProducts =
+        Get.find<PopularProductContr>().popularProductList[pageId];
+    Get.find<PopularProductContr>()
+        .inital(popularProducts, Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -33,7 +33,7 @@ class Detailpage extends StatelessWidget {
                         //  NetworkImage(AppConstants.BASE_URL +
                         //     AppConstants.UPLOAD_URI +
                         //     Popular.img!),
-                        AssetImage('images/${Popular.img!}'),
+                        AssetImage('images/${popularProducts.img!}'),
                     fit: BoxFit.cover)),
           ),
           Padding(
@@ -54,8 +54,7 @@ class Detailpage extends StatelessWidget {
                         color: Colors.black,
                         icon: Icons.arrow_back_ios,
                         length: Dimensions.height45,
-                        backColor:
-                            Color.fromARGB(255, 255, 255, 255).withOpacity(0.6),
+                        backColor: AppColors.constant255.withOpacity(0.6),
                       )),
                   GetBuilder<PopularProductContr>(builder: (popularProduct) {
                     return GestureDetector(
@@ -67,11 +66,11 @@ class Detailpage extends StatelessWidget {
                       child: Stack(
                         children: [
                           AppRoundIcons(
-                              color: Colors.black,
+                              color: AppColors.appBlack,
                               icon: Icons.shopping_bag,
                               length: Dimensions.height45,
-                              backColor: Color.fromARGB(255, 255, 255, 255)
-                                  .withOpacity(0.6)),
+                              backColor:
+                                  AppColors.constant255.withOpacity(0.6)),
                           Positioned(
                             left: 0,
                             top: 0,
@@ -95,7 +94,7 @@ class Detailpage extends StatelessWidget {
                                         text: Get.find<PopularProductContr>()
                                             .totalItems
                                             .toString(),
-                                        color: Colors.white,
+                                        color: AppColors.appWhite,
                                       )
                                     : Container(),
                           )
@@ -108,19 +107,20 @@ class Detailpage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
+              // ignore: sort_child_properties_last
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   NameDetail(
-                    text: Popular.name!,
+                    text: popularProducts.name!,
                     textsize: Dimensions.height25,
-                    SizedBoxheight1: Dimensions.height10,
+                    sizedboxHeight1: Dimensions.height10,
                     starsize: Dimensions.height20,
                     smalltext: Dimensions.height15,
-                    SizedBoxheight2: Dimensions.height10,
-                    SizedBoxheight11: Dimensions.height10,
-                    SizedBoxheight13: Dimensions.height10,
-                    SizedBoxheight12: Dimensions.height10,
+                    sizedboxHeight2: Dimensions.height10,
+                    sizedboxHeight11: Dimensions.height10,
+                    sizedboxHeight13: Dimensions.height10,
+                    sizedboxHeight12: Dimensions.height10,
                     yAxisPadding: Dimensions.height15,
                     xAxisPadding: Dimensions.height25,
                   ),
@@ -139,7 +139,7 @@ class Detailpage extends StatelessWidget {
                   Expanded(child: SingleChildScrollView(
                     child: GetBuilder<PopularProductContr>(
                         builder: (popularProduct) {
-                      return ExpandableText(text: Popular.description!);
+                      return ExpandableText(text: popularProducts.description!);
                     }),
                   )),
                 ],
@@ -164,7 +164,6 @@ class Detailpage extends StatelessWidget {
                     Dimensions.height15,
                     Dimensions.width25,
                     Dimensions.height15),
-                margin: EdgeInsets.all(0),
                 decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -193,7 +192,7 @@ class Detailpage extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                popularProducct.GetQuantity(false);
+                                popularProducct.getQuantity(false);
                               },
                               child: Container(
                                   padding: EdgeInsets.only(
@@ -211,7 +210,7 @@ class Detailpage extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                popularProducct.GetQuantity(true);
+                                popularProducct.getQuantity(true);
                               },
                               child: Container(
                                 padding:
@@ -227,10 +226,10 @@ class Detailpage extends StatelessWidget {
                         );
                       }),
                     ),
-                    GetBuilder<PopularProductContr>(builder: (PopularProduct) {
+                    GetBuilder<PopularProductContr>(builder: (popularProduct) {
                       return GestureDetector(
                           onTap: () {
-                            PopularProduct.addItem(Popular);
+                            popularProduct.addItem(popularProducts);
                           },
                           child: Container(
                             height: Dimensions.height70,
@@ -245,8 +244,8 @@ class Detailpage extends StatelessWidget {
                               children: [
                                 BigFont(
                                   text:
-                                      "Price is \$ ${Popular.price.toString()}",
-                                  color: Colors.white,
+                                      "Price is \$ ${popularProducts.price.toString()}",
+                                  color: AppColors.appWhite,
                                   size: Dimensions.height20,
                                 ),
                               ],

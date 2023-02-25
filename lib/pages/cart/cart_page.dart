@@ -1,26 +1,24 @@
-import 'package:first/assets/AppRoundIcon.dart';
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
-import 'package:first/assets/appConstants.dart';
+import 'package:first/assets/app_round_icon.dart';
+import 'package:first/assets/Big_font.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:first/assets/smallFont.dart';
-import 'package:first/data/controller/CartController.dart';
-import 'package:first/data/controller/popularController.dart';
+import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/pages/homepage.dart';
 import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../assets/EmptyCartImageContainer.dart';
+import '../../assets/EmptyCart_image_ontainer.dart';
+import '../../assets/app_colors.dart';
+import '../../data/controller/cart_controller.dart';
 
 class CartPage extends StatelessWidget {
   final String page;
-  CartPage({Key? key, required this.page}) : super(key: key);
+  const CartPage({Key? key, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.appWhite,
         body: Stack(
           children: [
             Positioned(
@@ -33,7 +31,7 @@ class CartPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () => Get.back(),
                       child: AppRoundIcons(
-                          color: Colors.white,
+                          color: AppColors.appWhite,
                           icon: Icons.arrow_back,
                           length: Dimensions.height20 * 2,
                           backColor: AppColors.maincolor),
@@ -43,16 +41,16 @@ class CartPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => HomePage());
+                        Get.to(() => const HomePage());
                       },
                       child: AppRoundIcons(
-                          color: Colors.white,
+                          color: AppColors.appWhite,
                           icon: Icons.home_outlined,
                           length: Dimensions.height20 * 2,
                           backColor: AppColors.maincolor),
                     ),
                     AppRoundIcons(
-                        color: Colors.white,
+                        color: AppColors.appWhite,
                         icon: Icons.shopping_cart_outlined,
                         length: Dimensions.height20 * 2,
                         backColor: AppColors.maincolor)
@@ -64,18 +62,18 @@ class CartPage extends StatelessWidget {
                 right: Dimensions.width20,
                 bottom: 0,
                 child: Container(
-                  color: Colors.white,
+                  color: AppColors.appWhite,
                   child: MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
                     child: GetBuilder<CartController>(
                       builder: (controller) {
-                        var _cartmodel = controller.getItems;
-                        return _cartmodel.length > 0
+                        var cartmodel = controller.getItems;
+                        return cartmodel.isNotEmpty
                             ? ListView.builder(
-                                itemCount: _cartmodel.length,
+                                itemCount: cartmodel.length,
                                 itemBuilder: ((_, index) {
-                                  return Container(
+                                  return SizedBox(
                                     height: Dimensions.height100,
                                     width: double.maxFinite,
                                     child: Row(
@@ -85,9 +83,9 @@ class CartPage extends StatelessWidget {
                                             if (page != 'CartHistory') {
                                               var popularIndex = Get.find<
                                                       PopularProductContr>()
-                                                  .PopularProductList
-                                                  .indexOf(_cartmodel[index]
-                                                      .product);
+                                                  .popularProductList
+                                                  .indexOf(
+                                                      cartmodel[index].product);
                                               if (popularIndex >= 0) {
                                                 Get.toNamed(RouteHelper
                                                     .getPopularFoodPage(
@@ -108,7 +106,7 @@ class CartPage extends StatelessWidget {
                                             margin: EdgeInsets.only(
                                                 bottom: Dimensions.height10),
                                             decoration: BoxDecoration(
-                                                color: Colors.white,
+                                                color: AppColors.appWhite,
                                                 image: DecorationImage(
                                                     image:
                                                         //  NetworkImage(
@@ -135,7 +133,7 @@ class CartPage extends StatelessWidget {
                                                 Dimensions.height5),
                                             height: Dimensions.height100,
                                             decoration: BoxDecoration(
-                                                color: Colors.white,
+                                                color: AppColors.appWhite,
                                                 borderRadius: BorderRadius.only(
                                                     topRight: Radius.circular(
                                                         Dimensions.height20),
@@ -158,8 +156,8 @@ class CartPage extends StatelessWidget {
                                                   size: Dimensions.height25,
                                                 ),
                                                 ThinFont(
-                                                  text: "some info",
-                                                  size: Dimensions.height15,
+                                                  text: "Total",
+                                                  size: Dimensions.height20,
                                                 ),
                                                 Row(
                                                   mainAxisAlignment:
@@ -182,8 +180,7 @@ class CartPage extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             controller.getItem(
-                                                                _cartmodel[
-                                                                        index]
+                                                                cartmodel[index]
                                                                     .product!,
                                                                 -1);
                                                           },
@@ -194,7 +191,7 @@ class CartPage extends StatelessWidget {
                                                           ),
                                                         ),
                                                         Text(
-                                                          _cartmodel[index]
+                                                          cartmodel[index]
                                                               .quantity
                                                               .toString(),
                                                           style: TextStyle(
@@ -205,8 +202,7 @@ class CartPage extends StatelessWidget {
                                                         GestureDetector(
                                                           onTap: () {
                                                             controller.getItem(
-                                                                _cartmodel[
-                                                                        index]
+                                                                cartmodel[index]
                                                                     .product!,
                                                                 1);
                                                           },
@@ -260,7 +256,7 @@ class CartPage extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(Dimensions.height20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.appWhite,
                         borderRadius:
                             BorderRadius.circular(Dimensions.height20),
                       ),
@@ -269,7 +265,7 @@ class CartPage extends StatelessWidget {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: AppColors.appWhite,
                                 borderRadius:
                                     BorderRadius.circular(Dimensions.height20)),
                             child: BigFont(
@@ -295,7 +291,7 @@ class CartPage extends StatelessWidget {
                           },
                           child: BigFont(
                             text: "Check out",
-                            color: Colors.white,
+                            color: AppColors.appWhite,
                             size: Dimensions.height20,
                           ),
                         ),

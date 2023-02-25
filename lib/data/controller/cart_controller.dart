@@ -117,37 +117,38 @@ class CartController extends GetxController {
     return cartRepo.getCartHistoryList();
   }
 
-  var CartPerOrderItem = Map<String, int>();
+  var cartPerOrderItem = <String, int>{};
 
   void perItemMap() {
-    CartPerOrderItem = Map<String, int>();
+    cartPerOrderItem = <String, int>{};
     for (int i = 0; i < getCartHistoryList().length; i++) {
       var key = getCartHistoryList()[i].time.toString();
-      if (CartPerOrderItem.containsKey(key)) {
-        CartPerOrderItem.update(key, (value) => ++value);
+      if (cartPerOrderItem.containsKey(key)) {
+        cartPerOrderItem.update(key, (value) => ++value);
       } else {
-        CartPerOrderItem.putIfAbsent(key, () => 1);
+        cartPerOrderItem.putIfAbsent(key, () => 1);
       }
     }
   }
 
-  List<int> get PerItemList {
+  List<int> get perItemList {
     perItemMap();
-    return CartPerOrderItem.entries.map((e) => e.value).toList();
+    return cartPerOrderItem.entries.map((e) => e.value).toList();
   }
 
-  List<String> get CartPerOrderTimeDate {
-    return CartPerOrderItem.entries.map((e) => e.key).toList();
+  List<String> get cartPerOrderTimeDate {
+    return cartPerOrderItem.entries.map((e) => e.key).toList();
   }
 
   List<List<Map>> nestedCartMethods = [];
-  void PictureListGenerator() {
+  void pictureListGenerator() {
     nestedCartMethods = [];
-    for (var i = 0; i < CartPerOrderItem.length; i++) {
+    for (var i = 0; i < cartPerOrderItem.length; i++) {
       List<Map> temp = [];
       for (var j = 0; j < getCartHistoryList().length; j++) {
-        if (CartPerOrderItem.keys.elementAt(i) ==
+        if (cartPerOrderItem.keys.elementAt(i) ==
             getCartHistoryList()[j].time) {
+          // ignore: iterable_contains_unrelated_type
           if (!temp.contains(getCartHistoryList()[j].img)) {
             Map tempMap = {
               getCartHistoryList()[j].img: getCartHistoryList()[j]
@@ -158,24 +159,22 @@ class CartController extends GetxController {
       }
       nestedCartMethods.add(temp);
     }
-    // nestedCartMethods= nestedCartMethods.reversed;
-    print("nested cart method : " + nestedCartMethods.toString());
   }
 
-  Map<int, CartMethod> ReCartItem = Map();
-  void ConstructReCartMap(String Date) {
-    ReCartItem.clear();
+  Map<int, CartMethod> reCartItem = <int, CartMethod>{};
+  void constructReCartMap(String date) {
+    reCartItem.clear();
     for (var i = 0; i < getCartHistoryList().length; i++) {
-      if (getCartHistoryList()[i].time == Date) {
-        ReCartItem.putIfAbsent(
+      if (getCartHistoryList()[i].time == date) {
+        reCartItem.putIfAbsent(
             getCartHistoryList()[i].id!, () => getCartHistoryList()[i]);
       }
     }
   }
 
-  void SetItems() {
+  void setItems() {
     _items = {};
-    _items = ReCartItem;
+    _items = reCartItem;
     update();
   }
 }

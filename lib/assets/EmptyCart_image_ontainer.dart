@@ -1,5 +1,4 @@
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
+import 'package:first/assets/Big_font.dart';
 import 'package:flutter/material.dart';
 
 import 'dimensions.dart';
@@ -7,6 +6,7 @@ import 'dimensions.dart';
 class EmptyCartImageContainer extends StatelessWidget {
   final String imagePath;
   final String message;
+  // ignore: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
   EmptyCartImageContainer({required this.imagePath, required this.message});
 
   @override

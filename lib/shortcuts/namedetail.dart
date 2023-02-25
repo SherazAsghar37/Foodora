@@ -1,70 +1,70 @@
 import 'package:first/assets/dimensions.dart';
 import 'package:first/assets/smallFont.dart';
 import 'package:flutter/material.dart';
-import '../assets/BigFont.dart';
-import '../assets/appColors.dart';
-import '../assets/icons.dart';
-import '../assets/dimensions.dart';
+import '../assets/Big_font.dart';
+import '../assets/app_colors.dart';
 import '../assets/icons.dart';
 
+// ignore: must_be_immutable
 class NameDetail extends StatelessWidget {
-  var text;
-  var textsize;
-  var SizedBoxheight1;
-  var SizedBoxheight11;
-  var SizedBoxheight12;
-  var SizedBoxheight13;
-  var SizedBoxheight2;
-  var Iconsize;
-  var icontextsize;
-  var smalltext;
-  var starsize;
-  var yAxisPadding;
-  var xAxisPadding;
+  String? text;
+  double textsize;
+  double sizedboxHeight1;
+  double sizedboxHeight11;
+  double sizedboxHeight12;
+  double sizedboxHeight13;
+  double sizedboxHeight2;
+  double iconSize;
+  double icontextsize;
+  double smalltext;
+  double starsize;
+  double yAxisPadding;
+  double xAxisPadding;
   final int starCount;
   final String price;
   final String location;
   NameDetail(
-      {this.location = "3 kms",
+      {super.key,
+      this.location = "3 kms",
       this.price = '10',
       this.starCount = 5,
       required this.text,
-      this.textsize,
-      this.SizedBoxheight1,
-      this.SizedBoxheight2,
-      this.SizedBoxheight11,
-      this.SizedBoxheight12,
-      this.SizedBoxheight13,
-      this.Iconsize,
-      this.icontextsize,
-      this.smalltext,
-      this.starsize,
-      this.yAxisPadding,
-      this.xAxisPadding});
+      this.textsize = 0.0,
+      this.sizedboxHeight1 = 0.0,
+      this.sizedboxHeight2 = 0.0,
+      this.sizedboxHeight11 = 0.0,
+      this.sizedboxHeight12 = 0.0,
+      this.sizedboxHeight13 = 0.0,
+      this.iconSize = 0.0,
+      this.icontextsize = 0.0,
+      this.smalltext = 0.0,
+      this.starsize = 0.0,
+      this.yAxisPadding = 0.0,
+      this.xAxisPadding = 0.0});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          top: yAxisPadding == null ? Dimensions.height15 : yAxisPadding,
-          left: xAxisPadding == null ? Dimensions.height15 : xAxisPadding,
-          right: xAxisPadding == null ? Dimensions.height15 : xAxisPadding),
+          top: yAxisPadding == 0.0 ? Dimensions.height15 : yAxisPadding,
+          left: xAxisPadding == 0.0 ? Dimensions.height15 : xAxisPadding,
+          right: xAxisPadding == 0.0 ? Dimensions.height15 : xAxisPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BigFont(
-            text: text,
-            color: Colors.black,
+            text: text!,
+            color: AppColors.appBlack,
             size: textsize == 0 ? Dimensions.height20 : textsize,
           ),
           SizedBox(
-            height: SizedBoxheight1 == 0 ? Dimensions.height5 : SizedBoxheight1,
+            height: sizedboxHeight1 == 0 ? Dimensions.height5 : sizedboxHeight1,
           ),
           Row(
             children: [
               Wrap(
                 children: List.generate(
-                    starCount == null ? 5 : starCount,
+                    starCount == 0.0 ? 5 : starCount,
                     (index) => Icon(
                           Icons.star,
                           color: AppColors.maincolor,
@@ -72,25 +72,26 @@ class NameDetail extends StatelessWidget {
                         )),
               ),
               SizedBox(
-                  width: SizedBoxheight11 == 0
+                  width: sizedboxHeight11 == 0
                       ? Dimensions.height10
-                      : SizedBoxheight11),
+                      : sizedboxHeight11),
               ThinFont(
-                text: starCount.toString() == null ? "5" : starCount.toString(),
+                text:
+                    starCount.toString() == '0.0' ? "5" : starCount.toString(),
                 size: smalltext == 0 ? Dimensions.font12 : smalltext,
               ),
               SizedBox(
-                  width: SizedBoxheight12 == 0
+                  width: sizedboxHeight12 == 0
                       ? Dimensions.height5
-                      : SizedBoxheight12),
+                      : sizedboxHeight12),
               ThinFont(
                 text: "120",
                 size: smalltext == 0 ? Dimensions.font12 : smalltext,
               ),
               SizedBox(
-                width: SizedBoxheight13 == 0
+                width: sizedboxHeight13 == 0
                     ? Dimensions.height5
-                    : SizedBoxheight13,
+                    : sizedboxHeight13,
               ),
               ThinFont(
                 text: "comments",
@@ -99,36 +100,36 @@ class NameDetail extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: SizedBoxheight2 == 0 ? Dimensions.height5 : SizedBoxheight2,
+            height: sizedboxHeight2 == 0 ? Dimensions.height5 : sizedboxHeight2,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppIcons(
-                  color: Colors.orange,
+                  color: AppColors.appOrange,
                   icon: Icons.timer,
-                  iconsize: Iconsize == null ? Dimensions.height20 : Iconsize,
+                  iconsize: iconSize == 0.0 ? Dimensions.height20 : iconSize,
                   text: "15 mins",
                   textsize:
-                      icontextsize == 0 ? Dimensions.font15 : icontextsize),
+                      icontextsize == 0.0 ? Dimensions.font15 : icontextsize),
               SizedBox(
                 width: Dimensions.width10,
               ),
               AppIcons(
                   color: AppColors.maincolor,
                   icon: Icons.location_pin,
-                  iconsize: Iconsize == null ? Dimensions.height20 : Iconsize,
-                  text: location == null ? "3 kms" : location,
+                  iconsize: iconSize == 0.0 ? Dimensions.height20 : iconSize,
+                  text: location.isEmpty ? "3 kms" : location,
                   textsize:
                       icontextsize == 0 ? Dimensions.font15 : icontextsize),
               SizedBox(
                 width: Dimensions.width10,
               ),
               AppIcons(
-                color: Colors.blueAccent,
+                color: AppColors.appBlueAccent,
                 icon: Icons.price_change,
-                iconsize: Iconsize == null ? Dimensions.height20 : Iconsize,
-                text: price == null ? '10' : price,
+                iconsize: iconSize == 0.0 ? Dimensions.height20 : iconSize,
+                text: price.isEmpty ? '10' : price,
                 textsize: icontextsize == 0 ? Dimensions.font15 : icontextsize,
               ),
             ],

@@ -1,6 +1,7 @@
 import 'package:first/assets/dimensions.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ThinFont extends StatelessWidget {
   String text;
   Color color;
@@ -20,11 +21,10 @@ class ThinFont extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         style: TextStyle(
-          color: color,
-          fontSize: size==0?Dimensions.font12:size,
-          fontFamily: 'Roboto',
-          overflow: overflow,
-          height: height
-        ));
+            color: color,
+            fontSize: size == 0 ? Dimensions.font12 : size,
+            fontFamily: 'Roboto',
+            overflow: overflow,
+            height: height));
   }
 }

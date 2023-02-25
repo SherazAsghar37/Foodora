@@ -1,6 +1,6 @@
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../assets/appConstants.dart';
+import '../../assets/app_constants.dart';
 import '../api/api_client.dart';
 import '../../methods/Signup_body_moel.dart';
 
@@ -9,13 +9,13 @@ class AuthRepo {
   SharedPreferences sharedPreferences;
   AuthRepo({required this.apiClient, required this.sharedPreferences});
 
-  Future<Response> Register(SignupBody signupBody) async {
-    return await apiClient.post(AppConstants.Register_URI, signupBody.toJson());
+  Future<Response> register(SignupBody signupBody) async {
+    return await apiClient.post(AppConstants.registerUri, signupBody.toJson());
   }
 
-  SaveToken(String token) async {
+  saveToken(String token) async {
     apiClient.token = token;
     apiClient.updateHeader(token);
-    return await sharedPreferences.setString(AppConstants.TOKEN, token);
+    return await sharedPreferences.setString(AppConstants.mainToken, token);
   }
 }

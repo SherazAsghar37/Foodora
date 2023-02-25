@@ -1,19 +1,16 @@
-import 'dart:convert';
-
-import 'package:first/assets/appColors.dart';
+import 'package:first/assets/app_colors.dart';
 import 'package:first/data/Repository/Popular_Reposiotry.dart';
-import 'package:first/data/controller/CartController.dart';
 import 'package:first/methods/CartMethod.dart';
 import 'package:first/methods/Product_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+import 'cart_controller.dart';
 
 class PopularProductContr extends GetxController {
   final PopularProductRepo popularProductRepo;
   PopularProductContr({required this.popularProductRepo});
   List<dynamic> _popularProductList = [];
-  List<dynamic> get PopularProductList => _popularProductList;
+  List<dynamic> get popularProductList => _popularProductList;
   late CartController _cart;
 
   bool _isLoaded = false;
@@ -57,13 +54,13 @@ class PopularProductContr extends GetxController {
   //   }
   // }
 
-  void GetQuantity(bool didinitialize) {
+  void getQuantity(bool didinitialize) {
     if (didinitialize == true) {
       print("initialized");
-      _quantity = CheckQuantity(_quantity + 1);
+      _quantity = checkQuantity(_quantity + 1);
     }
     if (didinitialize == false) {
-      _quantity = CheckQuantity(_quantity - 1);
+      _quantity = checkQuantity(_quantity - 1);
     }
     update();
   }
@@ -78,7 +75,7 @@ class PopularProductContr extends GetxController {
     _inCartItem = _cart.getQuantity(product);
   }
 
-  int CheckQuantity(int Quantity) {
+  int checkQuantity(int Quantity) {
     if ((_inCartItem + Quantity) < 0) {
       Get.snackbar("Item Count", "You can't decrease more",
           backgroundColor: AppColors.maincolor, colorText: Colors.white);

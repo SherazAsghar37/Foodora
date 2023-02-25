@@ -1,15 +1,13 @@
-import 'package:first/assets/AppRoundIcon.dart';
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
+import 'package:first/assets/app_round_icon.dart';
+import 'package:first/assets/Big_font.dart';
 import 'package:first/assets/dimensions.dart';
-import 'package:first/data/controller/CartController.dart';
-import 'package:first/methods/CartMethod.dart';
 import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../assets/EmptyCartImageContainer.dart';
-import '../../assets/appConstants.dart';
+import '../../assets/EmptyCart_image_ontainer.dart';
+import '../../assets/app_colors.dart';
+import '../../data/controller/cart_controller.dart';
 
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
@@ -18,24 +16,19 @@ class CartHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     CartController cartController = Get.find();
 
-    List<CartMethod> getCartHistoryList =
-        Get.find<CartController>().getCartHistoryList();
     Widget dateFormater(int index) {
       DateTime parsed = DateFormat("yyyy-mm-dd hh:mm:ss")
-          .parse(cartController.CartPerOrderItem.keys.elementAt(index));
+          .parse(cartController.cartPerOrderItem.keys.elementAt(index));
       var inputdate = DateTime.parse(parsed.toString());
       var outputFormat = DateFormat("dd/mm/yyyy hh:mm: a").format(inputdate);
       return Text(outputFormat);
     }
 
-    var debugger = 0;
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
-              color: AppColors.maincolor,
-            ),
+            color: AppColors.maincolor,
             height: Dimensions.height120,
             width: double.maxFinite,
             padding: EdgeInsets.fromLTRB(Dimensions.height30,
@@ -69,17 +62,17 @@ class CartHistory extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: Dimensions.height10,
-                      color: Color.fromARGB(255, 0, 207, 107),
+                      color: AppColors.greenShadowColor,
                       offset: Offset(0, -Dimensions.height10),
                     ),
                     BoxShadow(
                       blurRadius: Dimensions.height10,
-                      color: Color.fromARGB(255, 0, 207, 107),
+                      color: AppColors.greenShadowColor,
                       offset: Offset(Dimensions.height10, 0),
                     ),
                     BoxShadow(
                       blurRadius: Dimensions.height10,
-                      color: Color.fromARGB(255, 0, 207, 107),
+                      color: AppColors.greenShadowColor,
                       offset: Offset(-Dimensions.height10, 0),
                     ),
                   ],
@@ -87,14 +80,14 @@ class CartHistory extends StatelessWidget {
                       topLeft: Radius.circular(Dimensions.height20),
                       topRight: Radius.circular(Dimensions.height20)),
                 ),
-                child: cartController.getCartHistoryList().length > 0
-                    ? GetBuilder<CartController>(builder: (CartController) {
+                child: cartController.getCartHistoryList().isNotEmpty
+                    ? GetBuilder<CartController>(builder: (cartController) {
                         return ListView.builder(
-                            itemCount: cartController.PerItemList.length,
+                            itemCount: cartController.perItemList.length,
                             itemBuilder: (context, hIndex) {
-                              var itemcout = cartController.PerItemList.length;
+                              var itemcout = cartController.perItemList.length;
                               var reversedindex = itemcout - 1 - hIndex;
-                              cartController.PictureListGenerator();
+                              cartController.pictureListGenerator();
 
                               return SizedBox(
                                 height:
@@ -129,7 +122,7 @@ class CartHistory extends StatelessWidget {
                                                     viewportFraction: 1 / 3.5),
                                                 padEnds: false,
                                                 itemCount: cartController
-                                                    .PerItemList[reversedindex],
+                                                    .perItemList[reversedindex],
                                                 itemBuilder:
                                                     (((context, position) {
                                                   var nestedList =
@@ -177,26 +170,24 @@ class CartHistory extends StatelessWidget {
                                                   MainAxisAlignment.spaceAround,
                                               children: [
                                                 Text(
-                                                  "${cartController.CartPerOrderItem[cartController.CartPerOrderItem.keys.elementAt(reversedindex).toString()]} Items",
-                                                  style: TextStyle(
+                                                  "${cartController.cartPerOrderItem[cartController.cartPerOrderItem.keys.elementAt(reversedindex).toString()]} Items",
+                                                  style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.w500),
                                                 ),
                                                 GestureDetector(
                                                   onTap: () async {
                                                     cartController
-                                                        .ConstructReCartMap(
+                                                        .constructReCartMap(
                                                             cartController
-                                                                .CartPerOrderItem
+                                                                .cartPerOrderItem
                                                                 .keys
                                                                 .elementAt(
                                                                     reversedindex));
-                                                    print(cartController
-                                                        .ReCartItem);
-                                                    cartController.SetItems();
+                                                    cartController.setItems();
                                                     Get.toNamed(
                                                         RouteHelper.getCartpage(
-                                                            "CartHistory"));
+                                                            'CartHistory'));
                                                   },
                                                   child: Container(
                                                     padding: EdgeInsets.all(

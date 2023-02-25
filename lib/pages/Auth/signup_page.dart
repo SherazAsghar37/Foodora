@@ -1,14 +1,14 @@
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
+import 'package:first/assets/app_colors.dart';
 import 'package:first/methods/Signup_body_moel.dart';
 import 'package:first/assets/ValidationHelper.dart';
 import 'package:first/pages/Auth/loginPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../assets/Big_font.dart';
 import '../../assets/dimensions.dart';
-import '../../data/controller/authController.dart';
-import '../../shortcuts/AppTextField.dart';
+import '../../data/controller/auth_controller.dart';
+import '../../shortcuts/app_text_field.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -19,10 +19,10 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   AuthController authController = Get.find();
-  TextEditingController EmailController = TextEditingController();
-  TextEditingController PasswordController = TextEditingController();
-  TextEditingController NameController = TextEditingController();
-  TextEditingController PhoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   List iconsImages = ['fb.png', "google.png", 'twitter.png'];
   late String email;
   late String name;
@@ -31,27 +31,27 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     setFields() {
-      email = EmailController.text.trim();
-      password = PasswordController.text.trim();
-      name = NameController.text.trim();
-      phone = PhoneController.text.trim();
+      email = emailController.text.trim();
+      password = passwordController.text.trim();
+      name = nameController.text.trim();
+      phone = phoneController.text.trim();
       return true;
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.appWhite,
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: Dimensions.Screenheight * 0.05,
+              height: Dimensions.screenHeight * 0.05,
             ),
             Container(
               height: Dimensions.height120,
               width: Dimensions.width120,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('images/Logo.png'), fit: BoxFit.cover)),
             ),
@@ -59,7 +59,7 @@ class _SignupPageState extends State<SignupPage> {
               height: Dimensions.height20,
             ),
             AppTextField(
-              controller: EmailController,
+              controller: emailController,
               icon: Icons.mail,
               text: "Email",
             ),
@@ -67,7 +67,7 @@ class _SignupPageState extends State<SignupPage> {
               height: Dimensions.height20,
             ),
             AppTextField(
-              controller: PasswordController,
+              controller: passwordController,
               icon: Icons.password,
               text: "Password",
             ),
@@ -75,7 +75,7 @@ class _SignupPageState extends State<SignupPage> {
               height: Dimensions.height20,
             ),
             AppTextField(
-              controller: NameController,
+              controller: nameController,
               icon: Icons.person,
               text: "Name",
             ),
@@ -83,7 +83,7 @@ class _SignupPageState extends State<SignupPage> {
               height: Dimensions.height20,
             ),
             AppTextField(
-              controller: PhoneController,
+              controller: phoneController,
               icon: Icons.phone,
               text: "Phone",
             ),
@@ -91,22 +91,22 @@ class _SignupPageState extends State<SignupPage> {
               height: Dimensions.height20,
             ),
             GestureDetector(
-              onTap: () async {
-                await setFields();
+              onTap: () {
+                setFields();
                 VAlidationHelper.validationHelper(email, password, name, phone);
-                var signupBody = await SignupBody(
+                var signupBody = SignupBody(
                     email: email, name: name, password: password, phone: phone);
                 authController.Registeration(signupBody).then((status) {
                   if (status.isSucess) {
-                    print("Sucessful Registration");
+                    ("Sucessful Registration");
                   } else {
                     VAlidationHelper.getAppSnackbar(status.message);
                   }
                 });
               },
               child: Container(
-                height: Dimensions.Screenheight / 13,
-                width: Dimensions.Screenwidth / 2,
+                height: Dimensions.screenHeight / 13,
+                width: Dimensions.screenWidth / 2,
                 padding: EdgeInsets.all(Dimensions.height10),
                 decoration: BoxDecoration(
                     color: AppColors.maincolor,
@@ -126,7 +126,7 @@ class _SignupPageState extends State<SignupPage> {
             RichText(
                 text: TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => Get.to(() => LoginPage()),
+                      ..onTap = () => Get.to(() => const LoginPage()),
                     text: "Already have an Account?",
                     style: TextStyle(
                         color: Colors.grey[500],

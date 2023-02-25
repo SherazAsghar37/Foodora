@@ -1,20 +1,20 @@
 import 'dart:async';
 import 'package:first/assets/dimensions.dart';
-import 'package:first/data/controller/CartController.dart';
-import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../data/controller/popularController.dart';
+import '../data/controller/cart_controller.dart';
+import '../data/controller/popular_controller.dart';
 import '../data/controller/recommenden_controller.dart';
+import '../route_helper/routeHelper.dart';
 
-class splashScreen extends StatefulWidget {
-  const splashScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<splashScreen> createState() => _splashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _splashScreenState extends State<splashScreen>
+class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
@@ -28,14 +28,14 @@ class _splashScreenState extends State<splashScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadresources();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2))
+        AnimationController(vsync: this, duration: const Duration(seconds: 2))
           ..forward();
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
-    Timer(Duration(seconds: 3), () => Get.offNamed(RouteHelper.getInital()));
+    Timer(const Duration(seconds: 3),
+        () => Get.offNamed(RouteHelper.getInital()));
   }
 
   @override
@@ -47,8 +47,8 @@ class _splashScreenState extends State<splashScreen>
         ScaleTransition(
           scale: animation,
           child: Image(
-            image: AssetImage("images/Splash-Logo.png"),
-            width: Dimensions.SplashScreenWidth,
+            image: const AssetImage("images/Splash-Logo.png"),
+            width: Dimensions.splashscreenWidth,
           ),
         )
       ],

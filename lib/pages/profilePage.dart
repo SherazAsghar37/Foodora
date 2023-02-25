@@ -1,11 +1,10 @@
-import 'package:first/assets/AppRoundIcon.dart';
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
-import 'package:first/assets/appConstants.dart';
+import 'package:first/assets/app_round_icon.dart';
+import 'package:first/assets/Big_font.dart';
+import '../../assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:flutter/material.dart';
 
-import '../shortcuts/profileCotainer.dart';
+import '../shortcuts/profile_container.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -13,9 +12,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.appWhite,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.appWhite,
         elevation: 0,
         automaticallyImplyLeading: true,
       ),
@@ -34,7 +33,7 @@ class ProfilePage extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: AppRoundIcons(
-                    color: Colors.white,
+                    color: AppColors.appWhite,
                     icon: Icons.add,
                     backColor: AppColors.maincolor,
                     length: Dimensions.height25,
@@ -47,7 +46,7 @@ class ProfilePage extends StatelessWidget {
           ),
           BigFont(
             text: "Naruto",
-            color: Colors.black,
+            color: AppColors.appBlack,
             size: Dimensions.font25,
           ),
           SizedBox(
@@ -58,23 +57,23 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   ProfileContainer(
-                    Text: "Naruto Uzumaki",
+                    text: "Naruto Uzumaki",
                     icon: Icons.person,
                   ),
                   ProfileContainer(
-                    Text: "+92 3010175200",
+                    text: "+92 3010175200",
                     icon: Icons.phone,
                   ),
                   ProfileContainer(
-                    Text: "sasuke@gmail.com",
+                    text: "sasuke@gmail.com",
                     icon: Icons.mail,
                   ),
                   ProfileContainer(
-                    Text: "Konoha, Karachi",
+                    text: "Konoha, Karachi",
                     icon: Icons.location_on_outlined,
                   ),
                   ProfileContainer(
-                    Text: "Message Here",
+                    text: "Message Here",
                     icon: Icons.message_outlined,
                   ),
                 ],

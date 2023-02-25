@@ -1,11 +1,8 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:first/assets/dimensions.dart';
-import 'package:first/data/controller/popularController.dart';
-import 'package:get/get.dart';
-import '../assets/appColors.dart';
-import '../assets/BigFont.dart';
+import '../assets/app_colors.dart';
+import '../assets/Big_font.dart';
 import 'package:flutter/material.dart';
-import '../data/controller/recommenden_controller.dart';
 import 'page_body.dart';
 
 class MainAppPage extends StatefulWidget {
@@ -83,7 +80,7 @@ class _MainAppPageState extends State<MainAppPage> {
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
             child: SingleChildScrollView(
           child: PageBody(),
         ))

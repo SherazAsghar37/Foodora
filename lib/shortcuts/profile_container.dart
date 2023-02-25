@@ -1,13 +1,13 @@
-import 'package:first/assets/AppRoundIcon.dart';
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
+import 'package:first/assets/app_round_icon.dart';
+import 'package:first/assets/Big_font.dart';
+import '../../assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class ProfileContainer extends StatelessWidget {
-  final String Text;
+  final String text;
   final IconData icon;
-  ProfileContainer({required this.Text, required this.icon});
+  ProfileContainer({required this.text, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +30,9 @@ class ProfileContainer extends StatelessWidget {
                 width: Dimensions.width20,
               ),
               BigFont(
-                text: Text,
+                text: text,
                 size: Dimensions.font25 - 2,
-                color: Colors.black,
+                color: AppColors.appBlack,
               )
             ],
           ),

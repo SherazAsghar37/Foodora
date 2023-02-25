@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:first/data/Repository/recommended_Repo.dart';
 import 'package:first/methods/Product_methods.dart';
 import 'package:get/get.dart';
-import '../Repository/recommended_Repo.dart';
-import 'package:http/http.dart' as http;
 
 class RecommendedProductContr extends GetxController {
   final RecommendedProductRepo recommendedProductRepo;

@@ -1,12 +1,12 @@
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
+import 'package:first/assets/Big_font.dart';
+import 'package:first/assets/app_colors.dart';
 import 'package:first/assets/smallFont.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../assets/dimensions.dart';
-import '../../shortcuts/AppTextField.dart';
-import 'SignupPage.dart';
+import '../../shortcuts/app_text_field.dart';
+import 'signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,23 +16,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController EmailController = TextEditingController();
-  TextEditingController PasswordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.appWhite,
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             SizedBox(
-              height: Dimensions.Screenheight * 0.05,
+              height: Dimensions.screenHeight * 0.05,
             ),
             Container(
               height: Dimensions.height120,
               width: Dimensions.width120,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('images/Logo.png'), fit: BoxFit.cover)),
             ),
@@ -48,13 +48,13 @@ class _LoginPageState extends State<LoginPage> {
                   Text(
                     "Hello",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: AppColors.appBlack,
                         fontWeight: FontWeight.bold,
                         fontSize: Dimensions.height10 * 7),
                   ),
                   ThinFont(
                     text: "Sign into your account",
-                    color: Colors.grey[500]!,
+                    color: AppColors.grey500!,
                     size: Dimensions.height20,
                   )
                 ],
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
               height: Dimensions.height20,
             ),
             AppTextField(
-              controller: EmailController,
+              controller: emailController,
               icon: Icons.mail,
               text: "Email",
             ),
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
               height: Dimensions.height20,
             ),
             AppTextField(
-              controller: PasswordController,
+              controller: passwordController,
               icon: Icons.password,
               text: "Password",
             ),
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                             ..onTap = () => Get.back,
                           text: "Signin to your Account",
                           style: TextStyle(
-                              color: Colors.grey[500],
+                              color: AppColors.grey500,
                               fontSize: Dimensions.height20))),
                 ],
               ),
@@ -98,8 +98,8 @@ class _LoginPageState extends State<LoginPage> {
               height: Dimensions.height30,
             ),
             Container(
-              height: Dimensions.Screenheight / 13,
-              width: Dimensions.Screenwidth / 2,
+              height: Dimensions.screenHeight / 13,
+              width: Dimensions.screenWidth / 2,
               padding: EdgeInsets.all(Dimensions.height10),
               decoration: BoxDecoration(
                   color: AppColors.maincolor,
@@ -107,23 +107,23 @@ class _LoginPageState extends State<LoginPage> {
               child: Center(
                 child: BigFont(
                   text: "Sign up",
-                  color: Colors.white,
+                  color: AppColors.appWhite,
                   size: Dimensions.height30,
                 ),
               ),
             ),
             SizedBox(
-              height: Dimensions.Screenheight * 0.05,
+              height: Dimensions.screenHeight * 0.05,
             ),
             RichText(
               text: TextSpan(
                   text: "Don't have an Account?",
                   style: TextStyle(
-                      color: Colors.grey[500], fontSize: Dimensions.height20),
+                      color: AppColors.grey500, fontSize: Dimensions.height20),
                   children: [
                     TextSpan(
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.to(() => SignupPage(),
+                          ..onTap = () => Get.to(() => const SignupPage(),
                               transition: Transition.fadeIn),
                         text: " Create",
                         style: TextStyle(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'appColors.dart';
+import 'app_colors.dart';
 
 class VAlidationHelper {
   static void getAppSnackbar(String message,

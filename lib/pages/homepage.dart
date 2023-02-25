@@ -1,14 +1,11 @@
-import 'package:first/assets/appColors.dart';
-import 'package:first/pages/cart/cartHistory.dart';
+import 'package:first/assets/app_colors.dart';
+import 'package:first/pages/cart/cart_history_page.dart';
 import 'package:first/pages/main_app_page.dart';
 import 'package:first/pages/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import './cart/cartHistory.dart';
-import 'Auth/SignupPage.dart';
+import 'Auth/signup_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,7 +18,6 @@ class _HomePageState extends State<HomePage> {
   late PersistentTabController _controller;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller = PersistentTabController(initialIndex: 0);
   }
@@ -53,31 +49,37 @@ class _HomePageState extends State<HomePage> {
 
 //internet:
   List<Widget> _buildScreens() {
-    return [MainAppPage(), SignupPage(), CartHistory(), ProfilePage()];
+    return [
+      const MainAppPage(),
+      const SignupPage(),
+      const CartHistory(),
+      const ProfilePage()
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
+        icon: const Icon(CupertinoIcons.home),
         title: ("Home"),
         activeColorPrimary: AppColors.maincolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
+        // ignore: prefer_const_constructors
         icon: Icon(CupertinoIcons.archivebox),
         title: ("Archieve"),
         activeColorPrimary: AppColors.maincolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.shopping_cart),
+        icon: const Icon(CupertinoIcons.shopping_cart),
         title: ("Cart History"),
         activeColorPrimary: AppColors.maincolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
+        icon: const Icon(CupertinoIcons.person),
         title: ("Profile"),
         activeColorPrimary: AppColors.maincolor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
@@ -141,12 +143,12 @@ class _HomePageState extends State<HomePage> {
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties(
+      itemAnimationProperties: const ItemAnimationProperties(
         // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation(
+      screenTransitionAnimation: const ScreenTransitionAnimation(
         // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,

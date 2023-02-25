@@ -1,18 +1,19 @@
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:first/assets/BigFont.dart';
-import 'package:first/assets/appColors.dart';
-import 'package:first/assets/appConstants.dart';
+import 'package:first/assets/Big_font.dart';
 import 'package:first/assets/smallFont.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
 import 'package:first/methods/Product_methods.dart';
-import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../assets/app_colors.dart';
 import '../assets/dimensions.dart';
-import '../data/controller/popularController.dart';
+import '../data/controller/popular_controller.dart';
+import '../route_helper/routeHelper.dart';
 import '../shortcuts/namedetail.dart';
 
 class PageBody extends StatefulWidget {
+  const PageBody({super.key});
+
   @override
   State<PageBody> createState() => _PageBodyState();
 }
@@ -20,8 +21,8 @@ class PageBody extends StatefulWidget {
 class _PageBodyState extends State<PageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var currPagevalue = 0.0;
-  var ScaleFactor = 0.8;
-  var _height = Dimensions.height220;
+  var scaleFactor = 0.8;
+  var height = Dimensions.height220;
   @override
   void initState() {
     super.initState();
@@ -44,26 +45,26 @@ class _PageBodyState extends State<PageBody> {
       children: [
         GetBuilder<PopularProductContr>(builder: (popularProduct) {
           return popularProduct.isLoaded
-              ? Container(
+              ? SizedBox(
                   height: Dimensions.height320,
                   child: PageView.builder(
                     controller: pageController,
-                    itemCount: popularProduct.PopularProductList.length,
+                    itemCount: popularProduct.popularProductList.length,
                     itemBuilder: (context, Position) {
                       return FirstBody(Position,
-                          popularProduct.PopularProductList[Position]);
+                          popularProduct.popularProductList[Position]);
                     },
                   ),
                 )
-              : CircularProgressIndicator(
+              : const CircularProgressIndicator(
                   color: AppColors.maincolor,
                 );
         }),
-        GetBuilder<PopularProductContr>(builder: (PopularProduct) {
+        GetBuilder<PopularProductContr>(builder: (popularProduct) {
           return DotsIndicator(
-            dotsCount: PopularProduct.PopularProductList.isEmpty
+            dotsCount: popularProduct.popularProductList.isEmpty
                 ? 1
-                : PopularProduct.PopularProductList.length,
+                : popularProduct.popularProductList.length,
             position: currPagevalue,
             decorator: DotsDecorator(
               size: const Size.square(9.0),
@@ -87,7 +88,7 @@ class _PageBodyState extends State<PageBody> {
               ),
               SizedBox(width: Dimensions.width10),
               Container(
-                  margin: EdgeInsets.only(bottom: 5),
+                  margin: EdgeInsets.only(bottom: Dimensions.height5),
                   child: ThinFont(text: ".")),
               SizedBox(width: Dimensions.width10),
               ThinFont(text: "Food Pairing")
@@ -97,7 +98,7 @@ class _PageBodyState extends State<PageBody> {
         GetBuilder<RecommendedProductContr>(builder: (recommendedProduct) {
           return recommendedProduct.isLoaded
               ? ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: recommendedProduct.recommendedProductList.length,
                   itemBuilder: (context, index) {
@@ -122,8 +123,7 @@ class _PageBodyState extends State<PageBody> {
                                   decoration: BoxDecoration(
                                     boxShadow: [
                                       BoxShadow(
-                                        color:
-                                            Color.fromARGB(255, 209, 208, 208),
+                                        color: AppColors.shadowColor,
                                         blurRadius: Dimensions.height5,
                                         offset: Offset(0, Dimensions.height5),
                                       )
@@ -164,23 +164,23 @@ class _PageBodyState extends State<PageBody> {
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       Dimensions.radius20),
-                                              color: Colors.white,
+                                              color: AppColors.appWhite,
                                               boxShadow: [
                                                 BoxShadow(
-                                                  color: Color(0xFFe8e8e8),
+                                                  color: AppColors.shadowColor,
                                                   blurRadius:
                                                       Dimensions.height5,
                                                   offset: Offset(
                                                       0, Dimensions.height5),
                                                 ),
                                                 BoxShadow(
-                                                  color: Colors.white,
+                                                  color: AppColors.appWhite,
                                                   //blurRadius:5,
                                                   offset: Offset(
                                                       Dimensions.width5, 0),
                                                 ),
                                                 BoxShadow(
-                                                  color: Colors.white,
+                                                  color: AppColors.appWhite,
                                                   //blurRadius:5,
                                                   offset: Offset(
                                                       -Dimensions.width5, 0),
@@ -195,21 +195,21 @@ class _PageBodyState extends State<PageBody> {
                                                 .price
                                                 .toString(),
                                             textsize: Dimensions.height20,
-                                            SizedBoxheight1: Dimensions.height5,
+                                            sizedboxHeight1: Dimensions.height5,
                                             starsize: Dimensions.height15,
                                             smalltext: Dimensions.font12,
                                             starCount: recommendedProduct
                                                 .recommendedProductList[index]
                                                 .stars!,
-                                            SizedBoxheight2:
+                                            sizedboxHeight2:
                                                 Dimensions.height10,
-                                            SizedBoxheight11:
+                                            sizedboxHeight11:
                                                 Dimensions.height10,
-                                            SizedBoxheight13:
+                                            sizedboxHeight13:
                                                 Dimensions.height10,
-                                            SizedBoxheight12:
+                                            sizedboxHeight12:
                                                 Dimensions.height10,
-                                            Iconsize: Dimensions.height22,
+                                            iconSize: Dimensions.height22,
                                             icontextsize: Dimensions.font12,
                                           ),
                                         ),
@@ -220,7 +220,7 @@ class _PageBodyState extends State<PageBody> {
                       );
                     });
                   })
-              : CircularProgressIndicator(
+              : const CircularProgressIndicator(
                   color: AppColors.maincolor,
                 );
         })
@@ -228,27 +228,28 @@ class _PageBodyState extends State<PageBody> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   FirstBody(index, ProductMethod popularProduct) {
     Matrix4 matrix = Matrix4.identity();
     if (index == currPagevalue.floor()) {
-      var currScale = 1 - (currPagevalue - index) * (1 - ScaleFactor);
-      var currtrans = _height * (1 - currScale) / 2;
+      var currScale = 1 - (currPagevalue - index) * (1 - scaleFactor);
+      var currtrans = height * (1 - currScale) / 2;
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
         ..setTranslationRaw(0, currtrans, 0);
     } else if (index == currPagevalue.floor() + 1) {
       var currScale =
-          ScaleFactor + (currPagevalue - index + 1) * (1 - ScaleFactor);
-      var currtrans = _height * (1 - currScale) / 2;
+          scaleFactor + (currPagevalue - index + 1) * (1 - scaleFactor);
+      var currtrans = height * (1 - currScale) / 2;
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
         ..setTranslationRaw(0, currtrans, 0);
     } else if (index == currPagevalue.floor() - 1) {
-      var currScale = 1 - (currPagevalue - index) * (1 - ScaleFactor);
-      var currtrans = _height * (1 - currScale) / 2;
+      var currScale = 1 - (currPagevalue - index) * (1 - scaleFactor);
+      var currtrans = height * (1 - currScale) / 2;
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
         ..setTranslationRaw(0, currtrans, 0);
     } else {
       var currScale = 0.8;
-      var currtrans = _height * (1 - currScale) / 2;
+      var currtrans = height * (1 - currScale) / 2;
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
         ..setTranslationRaw(0, currtrans, 1);
     }
@@ -261,7 +262,7 @@ class _PageBodyState extends State<PageBody> {
             onTap: () {
               Get.toNamed(RouteHelper.getPopularFoodPage(index, "home"));
             },
-            child: GetBuilder<PopularProductContr>(builder: (PopularProduct) {
+            child: GetBuilder<PopularProductContr>(builder: (popularproduct) {
               return Container(
                 height: Dimensions.height220,
                 margin: EdgeInsets.only(
@@ -270,7 +271,9 @@ class _PageBodyState extends State<PageBody> {
                     top: Dimensions.height5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.height20),
-                  color: index.isEven ? Color(0xFFDD2C00) : Color(0xFFDD2c200),
+                  color: index.isEven
+                      ? AppColors.appOrange
+                      : AppColors.appBlueAccent,
                   image: DecorationImage(
                       image:
                           //  NetworkImage(AppConstants.BASE_URL +
@@ -293,33 +296,33 @@ class _PageBodyState extends State<PageBody> {
                   //color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0xFFe8e8e8),
+                      color: AppColors.shadowColor,
                       blurRadius: Dimensions.height5,
                       offset: Offset(0, Dimensions.height5),
                     ),
                     BoxShadow(
-                      color: Colors.white,
+                      color: AppColors.appWhite,
                       //blurRadius:5,
                       offset: Offset(Dimensions.width5, 0),
                     ),
                     BoxShadow(
-                        color: Colors.white,
+                        color: AppColors.appWhite,
                         //blurRadius:5,
                         offset: Offset(-Dimensions.width5, 0))
                   ]),
               child: NameDetail(
                 price: popularProduct.price.toString(),
-                text: popularProduct.name,
+                text: popularProduct.name.toString(),
                 textsize: Dimensions.height25,
-                SizedBoxheight1: Dimensions.height10,
+                sizedboxHeight1: Dimensions.height10,
                 starCount: popularProduct.stars!,
                 starsize: Dimensions.height20,
                 smalltext: Dimensions.height15,
-                SizedBoxheight2: Dimensions.height10,
-                SizedBoxheight11: Dimensions.height10,
-                SizedBoxheight13: Dimensions.height10,
-                SizedBoxheight12: Dimensions.height10,
-                Iconsize: Dimensions.height25,
+                sizedboxHeight2: Dimensions.height10,
+                sizedboxHeight11: Dimensions.height10,
+                sizedboxHeight13: Dimensions.height10,
+                sizedboxHeight12: Dimensions.height10,
+                iconSize: Dimensions.height25,
               ),
             ),
           )

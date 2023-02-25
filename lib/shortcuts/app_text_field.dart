@@ -1,4 +1,4 @@
-import 'package:first/assets/appColors.dart';
+import '../../assets/app_colors.dart';
 import 'package:flutter/material.dart';
 import '../assets/dimensions.dart';
 
@@ -16,14 +16,14 @@ class AppTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
       margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.appWhite,
           borderRadius: BorderRadius.circular(Dimensions.height30),
           boxShadow: [
             BoxShadow(
                 blurRadius: 10,
                 offset: Offset(1, 10),
                 spreadRadius: 7,
-                color: Colors.grey.withOpacity(0.2))
+                color: AppColors.appGrey.withOpacity(0.2))
           ]),
       child: TextField(
         controller: controller,
@@ -37,10 +37,12 @@ class AppTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(Dimensions.height30)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.height30),
-              borderSide: BorderSide(color: Colors.white, width: 1)),
+              borderSide:
+                  const BorderSide(color: AppColors.appWhite, width: 1)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.height30),
-              borderSide: BorderSide(color: Colors.white, width: 1)),
+              borderSide:
+                  const BorderSide(color: AppColors.appWhite, width: 1)),
         ),
       ),
     );

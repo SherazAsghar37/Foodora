@@ -1,13 +1,14 @@
-import 'package:first/assets/appConstants.dart';
-import 'package:first/data/controller/CartController.dart';
-import 'package:first/data/controller/popularController.dart';
+import 'package:first/assets/app_constants.dart';
+import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
-import 'package:first/pages/Auth/SignupPage.dart';
 import 'package:first/pages/Auth/loginPage.dart';
+import 'package:first/pages/Auth/signup_page.dart';
 import 'package:first/route_helper/routeHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:first/data/helper/Dependencied.dart' as dep;
+import 'package:first/data/helper/dependencies.dart' as dep;
+
+import 'data/controller/cart_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
         return GetBuilder<CartController>(builder: (_) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            title: AppConstants.APP_NAME,
-            home: SignupPage(),
-            // initialRoute: RouteHelper.getSplashPage(),
-            // getPages: RouteHelper.routes
+            title: AppConstants.appName,
+            // home: LoginPage(),
+            initialRoute: RouteHelper.getSplashPage(),
+            getPages: RouteHelper.routes,
           );
         });
       });

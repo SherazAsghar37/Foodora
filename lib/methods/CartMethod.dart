@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:first/methods/Product_methods.dart';
 
 class CartMethod {
@@ -35,14 +33,14 @@ class CartMethod {
   }
   Map<String, dynamic> toJson() {
     return {
-      'id': this.id,
-      'name': this.name,
-      'isExist': this.isExist,
-      'price': this.price,
-      'img': this.img,
-      'quantity': this.quantity,
-      'time': this.time,
-      'product': this.product!.toJson(),
+      'id': id,
+      'name': name,
+      'isExist': isExist,
+      'price': price,
+      'img': img,
+      'quantity': quantity,
+      'time': time,
+      'product': product!.toJson(),
     };
   }
 }

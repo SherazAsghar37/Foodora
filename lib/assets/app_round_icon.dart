@@ -1,22 +1,23 @@
 import 'package:first/assets/dimensions.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppRoundIcons extends StatelessWidget {
   IconData icon;
   Color color;
-  var iconsize;
-  var textsize;
-  var length = Dimensions.height45;
-  var backColor;
+  double iconsize;
+  double textsize;
+  double length = Dimensions.height45;
+  Color backColor;
 
   AppRoundIcons(
       {Key? key,
       required this.color,
       required this.icon,
-      this.iconsize,
-      this.textsize,
+      this.iconsize = 0.0,
+      this.textsize = 0.0,
       required this.length,
-      this.backColor=Colors.white})
+      this.backColor = Colors.white})
       : super(key: key);
 
   @override
