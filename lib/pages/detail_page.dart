@@ -45,9 +45,9 @@ class Detailpage extends StatelessWidget {
                   GestureDetector(
                       onTap: () {
                         if (page == "cartPage") {
-                          Get.toNamed(RouteHelper.cartPage);
+                          Get.offNamed(RouteHelper.cartPage);
                         } else {
-                          Get.toNamed(RouteHelper.initial);
+                          Get.offNamed(RouteHelper.initial);
                         }
                       },
                       child: AppRoundIcons(

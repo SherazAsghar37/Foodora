@@ -51,7 +51,10 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       const MainAppPage(),
-      const SignupPage(),
+      Center(
+          child: Container(
+        child: const Text("Empty Container"),
+      )),
       const CartHistory(),
       const ProfilePage()
     ];

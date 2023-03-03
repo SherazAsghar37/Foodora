@@ -1,5 +1,9 @@
 import 'package:first/assets/app_round_icon.dart';
 import 'package:first/assets/big_font.dart';
+import 'package:first/data/controller/auth_controller.dart';
+import 'package:first/data/controller/cart_controller.dart';
+import 'package:first/route_helper/route_helper.dart';
+import 'package:get/get.dart';
 import '../../assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +80,22 @@ class ProfilePage extends StatelessWidget {
                     text: "Message Here",
                     icon: Icons.message_outlined,
                   ),
+                  GestureDetector(
+                    onTap: () {
+                      if (Get.find<AuthController>().isLoggedin()) {
+                        Get.find<AuthController>().clearSharedData();
+                        Get.find<CartController>().clearCartHistory();
+                        Get.offNamed(RouteHelper.getSigninPage());
+                      }
+                    },
+                    child: ProfileContainer(
+                      text: "logout",
+                      icon: Icons.logout_outlined,
+                    ),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  )
                 ],
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:first/assets/app_round_icon.dart';
 import 'package:first/assets/big_font.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:first/assets/small_font.dart';
+import 'package:first/data/controller/auth_controller.dart';
 import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/pages/homepage.dart';
 import 'package:first/route_helper/route_helper.dart';
@@ -286,8 +287,12 @@ class CartPage extends StatelessWidget {
                         ),
                         child: GestureDetector(
                           onTap: () {
-                            controller.addToHistory();
-                            Get.toNamed(RouteHelper.initial);
+                            if (Get.find<AuthController>().isLoggedin()) {
+                              controller.addToHistory();
+                              Get.toNamed(RouteHelper.getInital());
+                            } else {
+                              Get.toNamed(RouteHelper.signinPage);
+                            }
                           },
                           child: BigFont(
                             text: "Check out",

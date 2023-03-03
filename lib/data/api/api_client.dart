@@ -5,6 +5,7 @@ class ApiClient extends GetConnect implements GetxService {
   late String token;
   final String appBaseUrl;
   late Map<String, String> _mainheader;
+  late Map<String, String> _mainGetheader;
   ApiClient({required this.appBaseUrl}) {
     timeout = const Duration(seconds: 30);
     baseUrl = appBaseUrl;
@@ -12,6 +13,10 @@ class ApiClient extends GetConnect implements GetxService {
     _mainheader = {
       'Accept': 'application/json',
       'Authorization': 'token $token'
+    };
+    _mainGetheader = {
+      'Accept': 'application/json',
+      'Authorization': 'token 33586a549763d0710aaf6bfd8a57fd87b061ae13'
     };
   }
   Future<Response> getData(String uri) async {

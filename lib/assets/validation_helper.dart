@@ -28,4 +28,14 @@ class VAlidationHelper {
       getAppSnackbar("Type in your phone", title: "Phone");
     }
   }
+
+  static void loginValidationHelper(String email, String password) {
+    if (email.isEmpty) {
+      getAppSnackbar("Type in your email address", title: "Email");
+    } else if (!GetUtils.isEmail(email)) {
+      getAppSnackbar("Enter valid email address", title: "Invalid Email");
+    } else if (password.isEmpty) {
+      getAppSnackbar("Type in your password", title: "Password");
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:first/assets/app_constants.dart';
 import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
+import 'package:first/pages/Auth/login_page.dart';
+import 'package:first/pages/Auth/signup_page.dart';
 import 'package:first/route_helper/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
