@@ -1,4 +1,4 @@
-import 'package:first/methods/Product_methods.dart';
+import 'package:first/methods/product_methods.dart';
 
 class CartMethod {
   int? id;

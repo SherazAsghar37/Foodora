@@ -1,5 +1,5 @@
 import 'package:first/assets/dimensions.dart';
-import 'package:first/assets/smallFont.dart';
+import 'package:first/assets/small_font.dart';
 import 'package:flutter/cupertino.dart';
 
 // ignore: must_be_immutable

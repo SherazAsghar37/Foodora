@@ -1,13 +1,13 @@
 import 'package:first/assets/app_round_icon.dart';
-import 'package:first/assets/Big_font.dart';
+import 'package:first/assets/big_font.dart';
 import 'package:first/assets/dimensions.dart';
-import 'package:first/assets/smallFont.dart';
+import 'package:first/assets/small_font.dart';
 import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/pages/homepage.dart';
-import 'package:first/route_helper/routeHelper.dart';
+import 'package:first/route_helper/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../assets/EmptyCart_image_ontainer.dart';
+import '../../assets/emptycart_image_ontainer.dart';
 import '../../assets/app_colors.dart';
 import '../../data/controller/cart_controller.dart';
 

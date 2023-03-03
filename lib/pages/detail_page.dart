@@ -6,9 +6,9 @@ import 'package:first/assets/dimensions.dart';
 import 'package:first/shortcuts/namedetail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../assets/Big_font.dart';
+import '../assets/big_font.dart';
 import '../data/controller/cart_controller.dart';
-import '../route_helper/routeHelper.dart';
+import '../route_helper/route_helper.dart';
 
 class Detailpage extends StatelessWidget {
   final int pageId;
@@ -167,7 +167,7 @@ class Detailpage extends StatelessWidget {
                 decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                          color: Color(0xFFF5F5F5),
+                          color: const Color(0xFFF5F5F5),
                           blurRadius: Dimensions.height5,
                           offset: Offset(0, -Dimensions.height5))
                     ],

@@ -1,15 +1,15 @@
-import 'package:first/data/Repository/authRepo.dart';
-import 'package:first/methods/resposneModel.dart';
+import 'package:first/methods/resposne_model.dart';
 import 'package:get/get.dart';
 
-import '../../methods/Signup_body_moel.dart';
+import '../../methods/signup_body_model.dart';
+import '../Repository/auth_repo.dart';
 
 class AuthController extends GetxController implements GetxService {
   AuthRepo authRepo;
   AuthController({required this.authRepo});
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-  Future<ResponseModel> Registeration(SignupBody signupBody) async {
+  Future<ResponseModel> registeration(SignupBody signupBody) async {
     _isLoading = true;
     Response response = await authRepo.register(signupBody);
     ResponseModel responseModel;

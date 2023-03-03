@@ -1,14 +1,14 @@
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:first/assets/Big_font.dart';
-import 'package:first/assets/smallFont.dart';
+import 'package:first/assets/big_font.dart';
+import 'package:first/assets/small_font.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
-import 'package:first/methods/Product_methods.dart';
+import 'package:first/methods/product_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../assets/app_colors.dart';
 import '../assets/dimensions.dart';
 import '../data/controller/popular_controller.dart';
-import '../route_helper/routeHelper.dart';
+import '../route_helper/route_helper.dart';
 import '../shortcuts/namedetail.dart';
 
 class PageBody extends StatefulWidget {
@@ -50,9 +50,9 @@ class _PageBodyState extends State<PageBody> {
                   child: PageView.builder(
                     controller: pageController,
                     itemCount: popularProduct.popularProductList.length,
-                    itemBuilder: (context, Position) {
-                      return FirstBody(Position,
-                          popularProduct.popularProductList[Position]);
+                    itemBuilder: (context, position) {
+                      return FirstBody(position,
+                          popularProduct.popularProductList[position]);
                     },
                   ),
                 )

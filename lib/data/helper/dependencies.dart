@@ -1,16 +1,16 @@
-import 'package:first/data/Repository/CartRepo.dart';
-import 'package:first/data/Repository/Popular_Reposiotry.dart';
+
+import 'package:first/assets/app_constants.dart';
+import 'package:first/data/Repository/popular_reposiotry.dart';
+import 'package:first/data/Repository/auth_repo.dart';
+import 'package:first/data/Repository/cart_repo.dart';
 import 'package:first/data/Repository/recommended_Repo.dart';
 import 'package:first/data/api/api_client.dart';
+import 'package:first/data/controller/cart_controller.dart';
 import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
 import 'package:first/data/controller/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../assets/app_constants.dart';
-import '../Repository/authRepo.dart';
-import '../controller/cart_controller.dart';
 
 Future<void> init() async {
   final SharedPreferences sharedPreferences =

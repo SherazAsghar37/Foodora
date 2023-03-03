@@ -1,7 +1,7 @@
 import 'package:first/assets/Big_font.dart';
 import 'package:first/assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';
-import 'package:first/assets/smallFont.dart';
+import 'package:first/assets/small_font.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -24,7 +24,7 @@ class ExpandableText extends StatefulWidget {
 
 class _ExpandableTextState extends State<ExpandableText> {
   late String firstHalf;
-  late String SecondHalf;
+  late String secondHalf;
   var textsize = Dimensions.height16;
   double textHeight = Dimensions.height220;
 
@@ -34,13 +34,13 @@ class _ExpandableTextState extends State<ExpandableText> {
     super.initState();
     if (widget.text.length.toInt() > textHeight.toInt()) {
       firstHalf = widget.text.substring(0, textHeight.toInt());
-      SecondHalf =
+      secondHalf =
           widget.text.substring(textHeight.toInt() + 1, widget.text.length);
     } else {
       firstHalf = widget.text;
-      SecondHalf = '';
+      secondHalf = '';
     }
-    ;
+    
   }
 
   @override
@@ -50,7 +50,7 @@ class _ExpandableTextState extends State<ExpandableText> {
             left: Dimensions.width25,
             right: Dimensions.width25,
             top: Dimensions.height10),
-        child: SecondHalf.isEmpty
+        child: secondHalf.isEmpty
             ? ThinFont(
                 text: widget.text,
                 size: textsize,
@@ -65,7 +65,7 @@ class _ExpandableTextState extends State<ExpandableText> {
                           height: 1.8,
                         )
                       : ThinFont(
-                          text: (firstHalf + SecondHalf),
+                          text: (firstHalf + secondHalf),
                           size: textsize,
                           height: 1.8),
                   InkWell(

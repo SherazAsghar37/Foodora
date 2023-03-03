@@ -12,19 +12,19 @@ class VAlidationHelper {
   }
 
   static void validationHelper(
-      String Email, String Password, String Name, String Phone) {
-    if (Email.isEmpty) {
+      String email, String password, String name, String phone) {
+    if (email.isEmpty) {
       getAppSnackbar("Type in your email address", title: "Email");
-    } else if (!GetUtils.isEmail(Email)) {
+    } else if (!GetUtils.isEmail(email)) {
       getAppSnackbar("Enter valid email address", title: "Invalid Email");
-    } else if (Password.isEmpty) {
+    } else if (password.isEmpty) {
       getAppSnackbar("Type in your password", title: "Password");
-    } else if (Password.length < 8) {
+    } else if (password.length < 8) {
       getAppSnackbar("Password must be greater than eight characters",
           title: "Password Length");
-    } else if (Name.isEmpty) {
+    } else if (name.isEmpty) {
       getAppSnackbar("Type in your name", title: "Name");
-    } else if (Phone.isEmpty) {
+    } else if (phone.isEmpty) {
       getAppSnackbar("Type in your phone", title: "Phone");
     }
   }

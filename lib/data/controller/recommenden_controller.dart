@@ -1,5 +1,5 @@
-import 'package:first/data/Repository/recommended_Repo.dart';
-import 'package:first/methods/Product_methods.dart';
+import 'package:first/data/Repository/recommended_repo.dart';
+import 'package:first/methods/product_methods.dart';
 import 'package:get/get.dart';
 
 class RecommendedProductContr extends GetxController {

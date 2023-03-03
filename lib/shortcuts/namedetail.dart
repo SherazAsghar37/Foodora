@@ -1,7 +1,7 @@
 import 'package:first/assets/dimensions.dart';
-import 'package:first/assets/smallFont.dart';
+import 'package:first/assets/small_font.dart';
 import 'package:flutter/material.dart';
-import '../assets/Big_font.dart';
+import '../assets/big_font.dart';
 import '../assets/app_colors.dart';
 import '../assets/icons.dart';
 

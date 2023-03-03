@@ -1,7 +1,7 @@
 import 'package:first/assets/app_colors.dart';
-import 'package:first/data/Repository/Popular_Reposiotry.dart';
-import 'package:first/methods/CartMethod.dart';
-import 'package:first/methods/Product_methods.dart';
+import 'package:first/data/Repository/popular_reposiotry.dart';
+import 'package:first/methods/cart_method.dart';
+import 'package:first/methods/product_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'cart_controller.dart';
@@ -69,14 +69,14 @@ class PopularProductContr extends GetxController {
     _quantity = 0;
     _inCartItem = 0;
     _cart = cart;
-    var exist = false;
+    bool exist = false;
     exist = _cart.isExisted(product);
 
     _inCartItem = _cart.getQuantity(product);
   }
 
-  int checkQuantity(int Quantity) {
-    if ((_inCartItem + Quantity) < 0) {
+  int checkQuantity(int quantity) {
+    if ((_inCartItem + quantity) < 0) {
       Get.snackbar("Item Count", "You can't decrease more",
           backgroundColor: AppColors.maincolor, colorText: Colors.white);
       if (_inCartItem > 0) {
@@ -84,12 +84,12 @@ class PopularProductContr extends GetxController {
         return _quantity;
       }
       return 0;
-    } else if ((_inCartItem + Quantity) > 20) {
+    } else if ((_inCartItem + quantity) > 20) {
       Get.snackbar("Item Count", "You can't add more",
           backgroundColor: AppColors.maincolor, colorText: Colors.white);
       return 20;
     } else {
-      return Quantity;
+      return quantity;
     }
   }
 

@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:first/assets/dimensions.dart';
 import '../assets/app_colors.dart';
-import '../assets/Big_font.dart';
+import '../assets/big_font.dart';
 import 'package:flutter/material.dart';
 import 'page_body.dart';
 
@@ -64,6 +64,7 @@ class _MainAppPageState extends State<MainAppPage> {
                     Container(
                       height: Dimensions.height50,
                       width: Dimensions.height50,
+                      // ignore: sort_child_properties_last
                       child: Icon(
                         Icons.search,
                         color: Colors.white,

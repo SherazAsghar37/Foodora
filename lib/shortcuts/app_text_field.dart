@@ -6,8 +6,9 @@ class AppTextField extends StatelessWidget {
   final TextEditingController controller;
   final String text;
   final IconData icon;
+  // ignore: prefer_const_constructors_in_immutables
   AppTextField(
-      {required this.controller, required this.icon, required this.text});
+      {super.key, required this.controller, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class AppTextField extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 blurRadius: 10,
-                offset: Offset(1, 10),
+                offset:const Offset(1, 10),
                 spreadRadius: 7,
                 color: AppColors.appGrey.withOpacity(0.2))
           ]),

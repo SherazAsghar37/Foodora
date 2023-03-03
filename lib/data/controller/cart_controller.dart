@@ -1,14 +1,14 @@
-import 'package:first/methods/Product_methods.dart';
+import 'package:first/methods/product_methods.dart';
 import 'package:get/get.dart';
-import '../../methods/CartMethod.dart';
-import '../Repository/CartRepo.dart';
+import '../../methods/cart_method.dart';
+import '../Repository/cart_repo.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
   CartController({required this.cartRepo});
   Map<int, CartMethod> _items = {};
   Map<int, CartMethod> get items => _items;
-  List<CartMethod> StorageList = [];
+  List<CartMethod> storageList = [];
   void getItem(ProductMethod product, int quantity) {
     var totalQuantityInside = 0;
     if (_items.containsKey(product.id!)) {
@@ -97,13 +97,13 @@ class CartController extends GetxController {
 
   List<CartMethod> getCartData() {
     setCartData = cartRepo.getCartList();
-    return StorageList;
+    return storageList;
   }
 
   set setCartData(List<CartMethod> items) {
-    StorageList = items;
-    for (int i = 0; i < StorageList.length; i++) {
-      _items.putIfAbsent(StorageList[i].id!, () => StorageList[i]);
+    storageList = items;
+    for (int i = 0; i < storageList.length; i++) {
+      _items.putIfAbsent(storageList[i].id!, () => storageList[i]);
     }
   }
 

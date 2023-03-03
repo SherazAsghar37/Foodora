@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:first/assets/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../methods/CartMethod.dart';
+import '../../methods/cart_method.dart';
 
 class CartRepo {
   final SharedPreferences sharedPreferences;

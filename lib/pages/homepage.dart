@@ -1,7 +1,7 @@
 import 'package:first/assets/app_colors.dart';
 import 'package:first/pages/cart/cart_history_page.dart';
 import 'package:first/pages/main_app_page.dart';
-import 'package:first/pages/profilePage.dart';
+import 'package:first/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';

@@ -1,11 +1,11 @@
 import 'package:first/assets/app_colors.dart';
-import 'package:first/methods/Signup_body_moel.dart';
-import 'package:first/assets/ValidationHelper.dart';
-import 'package:first/pages/Auth/loginPage.dart';
+import 'package:first/methods/signup_body_model.dart';
+import 'package:first/assets/validation_helper.dart';
+import 'package:first/pages/Auth/login_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../assets/Big_font.dart';
+import '../../assets/big_font.dart';
 import '../../assets/dimensions.dart';
 import '../../data/controller/auth_controller.dart';
 import '../../shortcuts/app_text_field.dart';
@@ -96,7 +96,7 @@ class _SignupPageState extends State<SignupPage> {
                 VAlidationHelper.validationHelper(email, password, name, phone);
                 var signupBody = SignupBody(
                     email: email, name: name, password: password, phone: phone);
-                authController.Registeration(signupBody).then((status) {
+                authController.registeration(signupBody).then((status) {
                   if (status.isSucess) {
                     ("Sucessful Registration");
                   } else {

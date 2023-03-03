@@ -4,7 +4,7 @@ import 'package:first/assets/Big_font.dart';
 import 'package:first/data/controller/cart_controller.dart';
 import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/data/controller/recommenden_controller.dart';
-import 'package:first/route_helper/routeHelper.dart';
+import 'package:first/route_helper/route_helper.dart';
 import 'package:first/shortcuts/expandable_text.dart';
 import 'package:first/assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';

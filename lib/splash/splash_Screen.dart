@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../data/controller/cart_controller.dart';
 import '../data/controller/popular_controller.dart';
 import '../data/controller/recommenden_controller.dart';
-import '../route_helper/routeHelper.dart';
+import '../route_helper/route_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

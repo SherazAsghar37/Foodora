@@ -2,7 +2,7 @@ import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../assets/app_constants.dart';
 import '../api/api_client.dart';
-import '../../methods/Signup_body_moel.dart';
+import '../../methods/signup_body_model.dart';
 
 class AuthRepo {
   ApiClient apiClient;

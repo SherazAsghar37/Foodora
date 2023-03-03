@@ -1,6 +1,6 @@
 import 'package:first/assets/Big_font.dart';
 import 'package:first/assets/app_colors.dart';
-import 'package:first/assets/smallFont.dart';
+import 'package:first/assets/small_font.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
 import 'package:first/assets/app_round_icon.dart';
-import 'package:first/assets/Big_font.dart';
+import 'package:first/assets/big_font.dart';
 import '../../assets/app_colors.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 class ProfileContainer extends StatelessWidget {
   final String text;
   final IconData icon;
-  ProfileContainer({required this.text, required this.icon});
+  // ignore: prefer_const_constructors_in_immutables
+  ProfileContainer({super.key, required this.text, required this.icon});
 
   @override
   Widget build(BuildContext context) {
