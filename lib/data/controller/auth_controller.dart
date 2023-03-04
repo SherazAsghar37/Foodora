@@ -1,6 +1,5 @@
 import 'package:first/methods/resposne_model.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../methods/signup_body_model.dart';
 import '../Repository/auth_repo.dart';
 

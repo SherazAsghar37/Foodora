@@ -1,8 +1,10 @@
 import 'package:first/assets/app_colors.dart';
+import 'package:first/data/controller/user_controller.dart';
 import 'package:first/methods/signup_body_model.dart';
 import 'package:first/assets/validation_helper.dart';
 import 'package:first/pages/Auth/login_page.dart';
 import 'package:first/route_helper/route_helper.dart';
+import 'package:first/shortcuts/custom_loader.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,29 +40,13 @@ class _SignupPageState extends State<SignupPage> {
     }
 
     return GetBuilder<AuthController>(builder: (authController) {
-      return authController.isLoading
-          ? Center(
-              child: Container(
-                height: Dimensions.height100,
-                width: Dimensions.height100,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      Dimensions.height100,
-                    ),
-                    color: AppColors.maincolor.withOpacity(0.5)),
-                // ignore: prefer_const_constructors
-                child: Center(
-                  child: const CircularProgressIndicator(
-                    color: AppColors.appWhite,
-                  ),
-                ),
-              ),
-            )
-          : Scaffold(
-              backgroundColor: AppColors.appWhite,
-              body: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
+      return Scaffold(
+        backgroundColor: AppColors.appWhite,
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: authController.isLoading
+              ? const Center(child: CustomLoader())
+              : Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
@@ -124,11 +110,12 @@ class _SignupPageState extends State<SignupPage> {
                         authController.registeration(signupBody).then((status) {
                           if (status.isSucess) {
                             ("Sucessful Registration");
+                            Get.find<UserController>().getUserInfo();
+                            Get.toNamed(RouteHelper.getInital());
                           } else {
                             VAlidationHelper.getAppSnackbar(status.message);
                           }
                         });
-                        Get.toNamed(RouteHelper.initial);
                       },
                       child: Container(
                         height: Dimensions.screenHeight / 13,
@@ -185,8 +172,8 @@ class _SignupPageState extends State<SignupPage> {
                     )
                   ],
                 ),
-              ),
-            );
+        ),
+      );
     });
   }
 }

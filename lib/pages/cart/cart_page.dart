@@ -2,6 +2,7 @@ import 'package:first/assets/app_round_icon.dart';
 import 'package:first/assets/big_font.dart';
 import 'package:first/assets/dimensions.dart';
 import 'package:first/assets/small_font.dart';
+import 'package:first/assets/validation_helper.dart';
 import 'package:first/data/controller/auth_controller.dart';
 import 'package:first/data/controller/popular_controller.dart';
 import 'package:first/pages/homepage.dart';
@@ -97,7 +98,7 @@ class CartPage extends StatelessWidget {
                                                         index, "cartPage"));
                                               }
                                             } else {
-                                              Get.snackbar("Product Error",
+                                              VAlidationHelper.getAppSnackbar(
                                                   "Sorry you can't visit from here");
                                             }
                                           },

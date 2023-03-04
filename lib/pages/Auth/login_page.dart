@@ -2,7 +2,9 @@ import 'package:first/assets/Big_font.dart';
 import 'package:first/assets/app_colors.dart';
 import 'package:first/assets/small_font.dart';
 import 'package:first/assets/validation_helper.dart';
+import 'package:first/data/controller/user_controller.dart';
 import 'package:first/route_helper/route_helper.dart';
+import 'package:first/shortcuts/custom_loader.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,23 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: AppColors.appWhite,
       body: GetBuilder<AuthController>(builder: (authController) {
         return authController.isLoading
-            ? Center(
-                child: Container(
-                  height: Dimensions.height100,
-                  width: Dimensions.height100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        Dimensions.height100,
-                      ),
-                      color: AppColors.maincolor.withOpacity(0.5)),
-                  // ignore: prefer_const_constructors
-                  child: Center(
-                    child: const CircularProgressIndicator(
-                      color: AppColors.appWhite,
-                    ),
-                  ),
-                ),
-              )
+            ? const CustomLoader()
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
@@ -137,9 +123,11 @@ class _LoginPageState extends State<LoginPage> {
                         authController.login(email, password).then((status) {
                           if (!status.isSucess) {
                             VAlidationHelper.getAppSnackbar(status.message);
+                          } else {
+                            Get.find<UserController>().getUserInfo();
+                            Get.toNamed(RouteHelper.getInital());
                           }
                         });
-                        Get.toNamed(RouteHelper.getInital());
                       },
                       child: Container(
                         height: Dimensions.screenHeight / 13,
